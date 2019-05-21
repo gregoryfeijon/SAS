@@ -1,0 +1,9 @@
+.botoes-items {
+	display:inline-block;
+}
+
+.botoes {
+	margin-left: auto;
+	margin-right: auto;
+	width: 25%;
+}
