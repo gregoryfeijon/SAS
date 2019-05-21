@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	   
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		
+		<script src="js/javaScript.js" type="text/javascript"></script>   
+		
+		<title>Consultar Médicos</title>
+	</head>
+	<body>
+	
+		<div class = "container" style = "width: 100vw;height: 100vh;">	
+			<h3 id = "textoAlinha"><strong>Consultar os medicos - SAS</strong></h3>
+			</br> </br>
+		
+		
+		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
+			<div class="input-group-prepend">
+				<label><b>Pesquisar Por: </b></label>
+			</div>
+			
+					<!-- 	Combobox pesquisarPor-->
+			<select class="custom-select col-sm-2 col-md-2 col-lg-2" id="cmbPesquisarPor" name="pesquisarPor">
+				<option selected></option>
+				<option value="porMedico" id = "porNomeDoMedico">Nome do médico</option>
+				<option value="porCRM" id = "porCRM">CRM</option>
+				<option value="porRG" id = "porRg">RG</option>
+			</select>
+		
+				<div class="form-group col-md-6">
+						<input type="text" class="form-control" id="txtNomeMedico" name="nome" placeholder="">
+				</div>
+		
+			<div class="input-group-btn " id="divBtnPesquisar">
+				<button class="btn btn-secondary " type="submit" id="bPesquisar">Pesquisar</button>
+			</div>
+
+		</div>
+		
+		<!-- ======================= -->
+		<form action="#" method="post">
+			<div  class="container">  <!-- Container -->
+				<!-- Cabeçalho -->
+				<div class="row"> <!-- Linha -->
+				
+					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Data de Cad. </b> </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Nome </b> </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> CRM </b> </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Telefone </b> </div>	
+					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Celular </b> </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Especialidade </b> </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Ações </b> </div>	
+											<!-- <div  class="col-sm-4 col-md-4 col-lg-4">	-->
+				</div>
+					
+				<!-- <div  class="col-xs-9"> --> <!-- Coluna  -->
+				<div class="row" th:remove="${#arrays.isEmpty(medicos)} ? all : 'all-but-first'">  
+					<div  class="col-sm-1 col-md-1 col-lg-1" th:text="${produto.dataCadastro}"> 20/01/2018 </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.nome}"> João das  neves </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.crm}"> 123.242.321-88</div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.telefone}"> (00) 00000-0000 </div>	
+				    <div  class="col-sm-1 col-md-1 col-lg-1" th:text="${produto.celular}"> (00) 0000-0000 </div>	
+				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.especialidade}"> Oftamologista </div>	
+				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.rg}"> 
+						
+						<form action="">
+							<button type="submit" class="btn btn-secondary "> <img src="./img/editar.svg" width="25px" height="25px"> 
+						</form>	
+						
+						<!-- INATIVAR -->
+						<form action="">
+							<button type="submit" class="btn btn-secondary "> <img src="./img/cancelar-2.svg" width="25px" height="25px"> 
+						</form>
+						
+						<form action="">
+							<!--  cadastrar -->
+							<button type="submit" class="btn btn-secondary "> <img src="./img/mais.svg" width="25px" height="25px"> 
+						</form>
+			
+					</div>	
+				
+				</div>                           
+			</div>
+		</form>
+		</div>
+	</body>
+</html>

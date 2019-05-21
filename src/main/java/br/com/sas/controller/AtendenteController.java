@@ -22,7 +22,7 @@ public class AtendenteController {
 //	@ResponseBody
 	public String ola() {
 		
-		return "cadastro-atendente";
+		return "cadastros/cadastro-atendente";
 	}
 	
 	
