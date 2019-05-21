@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	   
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		
+		<script src="js/javaScript.js" type="text/javascript"></script>   
+		
+		<title>Cadastro de atendente</title>
+	</head>
+	<body>
+		<div class = "container" style = "width: 100vw;height: 100vh;">	
+			<form action="/cadastrarAtendente" method="POST">
+				<h3 id = "textoAlinha"><strong>Cadastro de Atendente - SAS</strong></h3>
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="nomePaciente"><strong>Nome</strong></label>
+						<input type="text" class="form-control" id="nomePaciente" name="nome" placeholder="Insira o nome do paciente...">
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label for="inputEmail"><strong>E-mail</strong></label>
+						<input type="email" class="form-control" id="inputEmail"  placeholder="Insira o e-mail do paciente...">
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label for="inputTelefone"><strong>Telefone</strong></label>
+						<input type="number" class="form-control" id="inputTelefone" name="telefone" placeholder="(XX) XXXX-XXXX">
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label for="inputCelular"><strong>Celular</strong></label>
+						<input type="number" class="form-control" id="inputCelular" name="celular" placeholder="(XX) YXXXX-XXXX">
+					</div>
+					
+					<!-- A senha de 1º acesso será criada com base em um padrão e posteriormente o usuário poderá mudá-la -->
+					<div class="form-group col-md-4">
+						<label for="inputCEP"><strong>CEP</strong></label>
+						<input type="text" class="form-control" id="inputCEP" placeholder="00000-000">
+					</div>
+					
+					<!-- Possivelmente carregue uma lista de cidade de acordo com estado e vire combobox?-->
+					<div class="form-group col-md-4">
+						<label for="inputCidade"><strong>Cidade</strong></label>
+						<input type="text" class="form-control" id="inputCidade" placeholder="Ex: Salto">
+					</div>
+					
+					<!-- Possivelmente combobox com estados brasileiros-->
+					<div class="form-group col-md-2">
+						<label for="inputEstado"><strong>Estado</strong></label>
+						<input type="text" class="form-control" id="inputEstado" placeholder="Ex: SP">
+					</div>
+					
+					<div class="form-group col-md-2">
+						<label for="inputNumero"><strong>Nº</strong></label>
+						<input type="number" class="form-control" id="inputNumero" placeholder="Nº" min= "0" style = "inline">
+					</div>
+					
+					<div class="form-group col-md-8">
+						<label for="inputRua"><strong>Rua</strong></label>
+						<input type="text" class="form-control" id="inputRua" placeholder="Rua dos corumbatás">
+					</div>
+				
+					<div class="form-group col-md-4">
+						<label for="inputBairro"><strong>Bairro</strong></label>
+						<input type="text" class="form-control" id="inputBairro" placeholder="Salto de São José">
+					</div>
+				</div>
+				  
+				<div class="form-row">
+					<div class="form-group col-md-5">
+						<label for="inputCPF"><strong>CPF</strong></label>
+						<input type="number" class="form-control" id="inputCPF" name="cpf" placeholder="000.000.000-00">
+					</div>
+					
+					<div class="form-group col-md-4">
+						<label for="inputRG"><strong>RG</strong></label>
+						<input type="text" class="form-control" id="inputRG" name="rg" placeholder="00.000.000-0">
+					</div>
+					
+					<div class="form-group col-md-3">
+						<label for="inputDataNasc"><strong>Data de nascimento</strong></label>
+						<input type="date" class="form-control" id="inputDataNasc" name="dataNascimento" placeholder="dd/mm/aaaa">
+					</div>	
+				</div>
+				
+				<div class="form-row">
+					<button type="submit" class="btn btn-secondary col-md-6"><strong>Cadastrar</strong></button>
+					<button type="submit" class="btn btn-secondary col-md-6"><strong>Alterar</strong></button>
+				</div>
+			</form>
+		</div>
+		
+	</body>
+
+</html>
