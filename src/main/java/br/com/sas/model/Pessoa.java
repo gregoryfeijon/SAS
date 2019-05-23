@@ -38,6 +38,10 @@ public class Pessoa {
 	@DateTimeFormat
 	private Date dataCadastro;
 	
+	private Endereco endereco;
+	
+	
+	// ================================ GETTERs  and SETTERs =====================================
 	public long getId() {
 		return id;
 	}
@@ -104,6 +108,14 @@ public class Pessoa {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 	
