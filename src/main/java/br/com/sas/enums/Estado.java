@@ -1,4 +1,4 @@
-package br.com.sas.model;
+package br.com.sas.enums;
 
 public enum Estado {
 
