@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Atendimento {
@@ -13,11 +17,17 @@ public class Atendimento {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
+	@Lob
 	private String recomendacoes;
 	
+	@ManyToMany
 	private List<Remedio> receita;
+
 	
+	@JoinColumn(unique=true)
+	@OneToOne
 	private Agendamento agendamento;
+	
 	
 	public Atendimento(Agendamento agendamento) {
 		this.agendamento = agendamento;

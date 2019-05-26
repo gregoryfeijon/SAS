@@ -1,6 +1,6 @@
 package br.com.sas.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,15 +31,17 @@ public class Pessoa {
 	private String cpf;
 	
 	@DateTimeFormat
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 	
 	private int telefone;
 	
 	private int celular;
 	
 	@DateTimeFormat
-	private Date dataCadastro;
+	private LocalDate dataCadastro;
 	
+	@JoinColumn(unique=true)
+	@OneToOne
 	private Endereco endereco;
 	
 	
@@ -66,11 +70,11 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 	
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 	
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	
@@ -90,11 +94,11 @@ public class Pessoa {
 		this.celular = celular;
 	}
 	
-	public Date getDataCadastro() {
+	public LocalDate getDataCadastro() {
 		return dataCadastro;
 	}
 	
-	public void setDataCadastro(Date dataCadastro) {
+	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

@@ -3,6 +3,7 @@ package br.com.sas.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -11,7 +12,7 @@ public class Paciente extends Pessoa {
 
 //	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	
-	
+	@ManyToMany
 	private List<Alergias> alergiasPaciente;
 
 	

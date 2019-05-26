@@ -1,5 +1,6 @@
 package br.com.sas.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Consultorio {
@@ -20,15 +26,21 @@ public class Consultorio {
 	
 	private String nomeFantasia;
 	
-	private Date dataCriacao;
+//	private Date dataCriacao;
+	private LocalDate dataCriacao;
 	
+	@ManyToOne
 	private Medico medicoCriador;
 	
-	private Endereco endereco;
+	@JoinColumn(unique=true)
+    @OneToOne
+	private Endereco enderecoConsultorio;
 	
 //	@LazyCollection : VER SE É ESSA A ANOTAÇÃO, QUE FAZ O TRABALHO DE ("LAZY LOAD")
+	@ManyToMany
 	private List<Medico> medicos;
 	
+	@ManyToMany
 	private List<Agendamento> agendamentos;
 
 	
@@ -40,6 +52,14 @@ public class Consultorio {
 
 	public void setMedicoCriador(Medico medicoCriador) {
 		this.medicoCriador = medicoCriador;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -66,20 +86,28 @@ public class Consultorio {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public Date getDataCriacao() {
+	public LocalDate getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(Date dataCriacao) {
+	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public long getId() {
-		return id;
+	public Endereco getEnderecoConsultorio() {
+		return enderecoConsultorio;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setEnderecoConsultorio(Endereco enderecoConsultorio) {
+		this.enderecoConsultorio = enderecoConsultorio;
+	}
+
+	public List<Medico> getMedicos() {
+		return medicos;
+	}
+
+	public void setMedicos(List<Medico> medicos) {
+		this.medicos = medicos;
 	}
 
 	public List<Agendamento> getAgendamentos() {
@@ -90,21 +118,6 @@ public class Consultorio {
 		this.agendamentos = agendamentos;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public List<Medico> getMedicos() {
-		return medicos;
-	}
-
-	public void setMedicos(List<Medico> medicos) {
-		this.medicos = medicos;
-	}
 	
 	
 	

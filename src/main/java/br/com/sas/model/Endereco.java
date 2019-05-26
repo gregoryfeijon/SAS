@@ -1,9 +1,13 @@
 package br.com.sas.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import br.com.sas.enums.Estado;
 
 @Entity
 public class Endereco {
@@ -19,6 +23,9 @@ public class Endereco {
 	
 	private int cep;
 
+	@Enumerated(EnumType.STRING)
+	private Estado estado;
+	
 	// ================================ GETTERs  and SETTERs =====================================
 	public long getId() {
 		return id;
@@ -58,6 +65,14 @@ public class Endereco {
 
 	public void setCep(int cep) {
 		this.cep = cep;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 	
 	
