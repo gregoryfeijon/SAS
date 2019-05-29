@@ -39,33 +39,33 @@ public class DataConfiguration {
 //	}
 	
 	
-	@Bean // o retorno do método será um objeto gerenciado pelo Spring
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		factoryBean.setJpaVendorAdapter(vendorAdapter);
-
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUsername("root");
-		dataSource.setPassword("root");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/sas?useTimezone=true&serverTimezone=UTC");
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-
-		factoryBean.setDataSource(dataSource);
-
-		Properties props = new Properties();
-//		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		props.setProperty("hibernate.show_sql", "true");
-		props.setProperty("hibernate.hbm2ddl.auto", "update");
-//		props.setProperty("hibernate.hbm2ddl.auto", "create");
-		factoryBean.setJpaProperties(props);
-
-		factoryBean.setPackagesToScan("br.com.sas.model");
-
-		return factoryBean;
-	}
+//	@Bean // o retorno do método será um objeto gerenciado pelo Spring
+//	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+//		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+//
+//		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//		factoryBean.setJpaVendorAdapter(vendorAdapter);
+//
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//		dataSource.setUsername("root");
+//		dataSource.setPassword("root");
+//		dataSource.setUrl("jdbc:mysql://localhost:3306/sas?useTimezone=true&serverTimezone=UTC");
+//		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//
+//		factoryBean.setDataSource(dataSource);
+//
+//		Properties props = new Properties();
+////		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//		props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+//		props.setProperty("hibernate.show_sql", "true");
+//		props.setProperty("hibernate.hbm2ddl.auto", "update");
+////		props.setProperty("hibernate.hbm2ddl.auto", "create");
+//		factoryBean.setJpaProperties(props);
+//
+//		factoryBean.setPackagesToScan("br.com.sas.model");
+//
+//		return factoryBean;
+//	}
 
 	
 	

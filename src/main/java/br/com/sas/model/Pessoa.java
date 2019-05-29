@@ -1,6 +1,7 @@
 package br.com.sas.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +11,16 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 //import org.springframework.data.annotation.Id;
 
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED) 	
+//@Inheritance(strategy= InheritanceType.JOINED) 	
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
 public class Pessoa {	
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,8 +41,8 @@ public class Pessoa {
 	
 	private int celular;
 	
-	@DateTimeFormat
-	private LocalDate dataCadastro;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataCadastro;
 	
 	@JoinColumn(unique=true)
 	@OneToOne
@@ -94,11 +98,11 @@ public class Pessoa {
 		this.celular = celular;
 	}
 	
-	public LocalDate getDataCadastro() {
+	public Date getDataCadastro() {
 		return dataCadastro;
 	}
 	
-	public void setDataCadastro(LocalDate dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

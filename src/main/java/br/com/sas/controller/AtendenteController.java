@@ -20,7 +20,7 @@ public class AtendenteController {
 	
 	@GetMapping("/")
 //	@ResponseBody
-	public String ola() {
+	public String form() {
 		
 		return "cadastros/cadastro-atendente";
 	}

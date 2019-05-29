@@ -1,6 +1,5 @@
 package br.com.sas.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Agendamento {
@@ -16,7 +17,8 @@ public class Agendamento {
 	private long id;
 	
 //	private Date dataConsulta;
-	private LocalDate dataConsulta;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataConsulta;
 	
 	private Double valorConsulta;
 	
@@ -50,11 +52,11 @@ public class Agendamento {
 		return valorConsulta;
 	}
 
-	public LocalDate getDataConsulta() {
+	public Date getDataConsulta() {
 		return dataConsulta;
 	}
 
-	public void setDataConsulta(LocalDate dataConsulta) {
+	public void setDataConsulta(Date dataConsulta) {
 		this.dataConsulta = dataConsulta;
 	}
 
