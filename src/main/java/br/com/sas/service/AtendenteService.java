@@ -24,7 +24,8 @@ public class AtendenteService {
 	}
 	
 	public Atendente save(Atendente atendente) {
-		return repository.saveAndFlush(atendente);
+		return repository.save(atendente);
+//		return repository.saveAndFlush(atendente);
 	}
 	
 	public void deleteById(Long id) {

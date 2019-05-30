@@ -35,7 +35,7 @@ public class Pessoa {
 	private String cpf;
 	
 	@DateTimeFormat
-	private LocalDate dataNascimento;
+	private Date dataNascimento;
 	
 	private int telefone;
 	
@@ -74,11 +74,11 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 	
-	public LocalDate getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 	
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	

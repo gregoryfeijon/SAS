@@ -62,31 +62,38 @@
 					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Celular </b> </div>	
 					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Especialidade </b> </div>	
 					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Ações </b> </div>	
+					
 											<!-- <div  class="col-sm-4 col-md-4 col-lg-4">	-->
 				</div>
 					
 				<!-- <div  class="col-xs-9"> --> <!-- Coluna  -->
-				<div class="row" th:remove="${#arrays.isEmpty(medicos)} ? all : 'all-but-first'">  
-					<div  class="col-sm-1 col-md-1 col-lg-1" th:text="${produto.dataCadastro}"> 20/01/2018 </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.nome}"> João das  neves </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.crm}"> 123.242.321-88</div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.telefone}"> (00) 00000-0000 </div>	
-				    <div  class="col-sm-1 col-md-1 col-lg-1" th:text="${produto.celular}"> (00) 0000-0000 </div>	
-				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.especialidade}"> Oftamologista </div>	
-				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${produto.rg}"> 
+				<div class="row" th:remove="${#arrays.isEmpty(medico)} ? all : 'all-but-first'">  
+					<div  class="col-sm-1 col-md-1 col-lg-1" th:text="${medico.dataCadastro}"> 20/01/2018 </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.nome}"> João das  neves </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.crm}"> 123.242.321-88</div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.telefone}"> (00) 00000-0000 </div>	
+				    <div  class="col-sm-1 col-md-1 col-lg-1" th:text="${medico.celular}"> (00) 0000-0000 </div>	
+				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.especialidade}"> Oftamologista </div>	
+				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.rg}"> 
 						
 						<form action="">
-							<button type="submit" class="btn btn-secondary "> <img src="./img/editar.svg" width="25px" height="25px"> 
+							<button type="submit" class="btn btn-secondary ">
+								<img src="./img/editar.svg" width="25px" height="25px"> 
+							</button>
 						</form>	
 						
 						<!-- INATIVAR -->
 						<form action="">
-							<button type="submit" class="btn btn-secondary "> <img src="./img/cancelar-2.svg" width="25px" height="25px"> 
+							<button type="submit" class="btn btn-secondary ">
+								<img src="./img/cancelar-2.svg" width="25px" height="25px"> 
+							</button>
 						</form>
 						
 						<form action="">
 							<!--  cadastrar -->
-							<button type="submit" class="btn btn-secondary "> <img src="./img/mais.svg" width="25px" height="25px"> 
+							<button type="submit" class="btn btn-secondary "> 
+								<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
+							</button>
 						</form>
 			
 					</div>	

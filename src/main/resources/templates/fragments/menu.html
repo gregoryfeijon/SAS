@@ -23,16 +23,16 @@
 						</a>
 						
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkEficiencia">
-							<a class="dropdown-item" id="eficiencia" href="${spring:mvcUrl('AC#form').build()}">
+							<a class="dropdown-item" th:href="@{/atendente/cadastrarAtendente}">
 								Atendente 
 							</a> 
-							<a class="dropdown-item" href="${spring:mvcUrl('CC#metodo').build()}">
+							<a class="dropdown-item" th:href="@{/consultorio/cadastrarConsultorio}">
 								Consultório
+							</a>	
+							<a class="dropdown-item" th:href="@{/medico/cadastrarMedico}">
+								Medico  
 							</a>
-							<a class="dropdown-item" href="${spring:mvcUrl('MC#metodo').build()}">
-								Medico
-							</a>
-							<a class="dropdown-item" href="${spring:mvcUrl('PC#metodo').build()}">
+							<a class="dropdown-item" th:href="@{/paciente/cadastrarPaciente}">
 								Paciente
 							</a>
 						</div>
@@ -45,16 +45,16 @@
 						</a>	
 						
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkEficiencia">
-							<a class="dropdown-item" id="eficiencia" href="${spring:mvcUrl('AC#form').build()}">
+							<a class="dropdown-item" th:href="@{/atendente/consultar}">
 								Atendente 
 							</a> 
-							<a class="dropdown-item" href="${spring:mvcUrl('CC#metodo').build()}">
+							<a class="dropdown-item" th:href="@{/consultorio/consultar}">
 								Consultório
 							</a>
-							<a class="dropdown-item" href="${spring:mvcUrl('MC#metodo').build()}">
+							<a class="dropdown-item" th:href="@{/medico/consultar}">
 								Medico
 							</a>
-							<a class="dropdown-item" href="${spring:mvcUrl('PC#metodo').build()}">
+							<a class="dropdown-item" th:href="@{/paciente/consultar}">
 								Paciente
 							</a>
 						</div>
@@ -67,10 +67,10 @@
 						</a>	
 						
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkEficiencia">
-							<a class="dropdown-item" id="eficiencia" href="${spring:mvcUrl('AC#form').build()}">
+							<a class="dropdown-item"  th:href="@{/agendamentos/agendaDeConsulta}">
 								Agenda de Consulta 
 							</a> 
-							<a class="dropdown-item" href="${spring:mvcUrl('CC#metodo').build()}">
+							<a class="dropdown-item" th:href="@{/agendamentos/agendarConsulta}">
 								Agendar consulta
 							</a>
 						</div>
@@ -83,7 +83,7 @@
 						</a>	
 						
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkEficiencia">
-							<a class="dropdown-item" id="eficiencia" href="${spring:mvcUrl('AC#form').build()}">
+							<a class="dropdown-item" id="eficiencia" th:href="@{/atendimentos/registrarAtendimento}">
 								Registrar atendimento
 							</a> 
 						</div>
