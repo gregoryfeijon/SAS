@@ -6,28 +6,29 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.sas.model.Atendente;
-import br.com.sas.repository.AtendenteRepository;
+import br.com.sas.model.Pessoa;
+import br.com.sas.repository.PessoaRepository;
 
 @Service
-public class AtendenteService {
+public class PessoaService {
 	
 	@Autowired
-	private AtendenteRepository repository;
+	private PessoaRepository repository;
 	
-	public List<Atendente> findAll() {
+	public List<Pessoa> findAll() {
 		return repository.findAll();
 	}
 	
-	public Optional<Atendente> findOne(Long id) {
+	public Optional<Pessoa> findOne(Long id) {
 		return repository.findById(id); 
 	}
 	
-	public Atendente save(Atendente atendente) {
-		return repository.saveAndFlush(atendente);
+	public Pessoa save(Pessoa pessoa) {
+		return repository.saveAndFlush(pessoa);
 	}
 	
 	public void deleteById(Long id) {
 		repository.deleteById(id);
 	}
+	
 }

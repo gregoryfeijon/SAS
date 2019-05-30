@@ -1,9 +1,9 @@
 package br.com.sas.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.sas.model.Atendente;
 
-public interface AtendenteRepository extends CrudRepository<Atendente, Long>{
+public interface AtendenteRepository extends JpaRepository<Atendente, Long>{
 
 }

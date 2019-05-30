@@ -13,15 +13,15 @@ public class Paciente extends Pessoa {
 //	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	
 	@ManyToMany
-	private List<Alergias> alergiasPaciente;
+	private List<Alergia> alergiasPaciente;
 
 	
 	// ================================ GETTERs  and SETTERs =====================================
-	public List<Alergias> getAlergiasPaciente() {
+	public List<Alergia> getAlergiasPaciente() {
 		return alergiasPaciente;
 	}
 
-	public void setAlergiasPaciente(List<Alergias> alergiasPaciente) {
+	public void setAlergiasPaciente(List<Alergia> alergiasPaciente) {
 		this.alergiasPaciente = alergiasPaciente;
 	}
 	
