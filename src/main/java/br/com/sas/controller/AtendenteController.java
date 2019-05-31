@@ -1,5 +1,7 @@
 package br.com.sas.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sas.model.Atendente;
 import br.com.sas.service.AtendenteService;
 import br.com.sas.service.EnderecoService;
+import br.com.sas.service.PessoaService;
 
 @Controller
 @RequestMapping("/atendente")
@@ -23,6 +26,9 @@ public class AtendenteController {
 
 	@Autowired
 	AtendenteService atendenteService;
+	
+	@Autowired
+	PessoaService pessoaService;
 	
 	@Autowired 
 	EnderecoService enderecoService;
@@ -50,8 +56,12 @@ public class AtendenteController {
 	
 	@GetMapping("/consultar")
 	public ModelAndView findAll() {
-		ModelAndView mv = new ModelAndView("/consultar-atendentes");
-		mv.addObject("listAtendentes", atendenteService.findAll());
+		ModelAndView mv = new ModelAndView("consultas/consultar-atendentes");
+		
+		List<Atendente> listAtendentes = atendenteService.findAll();
+//		List<Pessoa> lista = pessoaService.findAll();
+		mv.addObject("listAtendentes", listAtendentes);
+//		mv.addObject("listAtendentes", atendenteService.findAll());
 		return mv;
 	}
 	

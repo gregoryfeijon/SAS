@@ -1,25 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	   
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		
-		<script src="js/javaScript.js" type="text/javascript"></script>   
-		
+	  
+	<head lang="pt-br" th:include="/fragments/head :: head">
 		<title>Consultar Pacientes</title>
 	</head>
 	<body>
-	
+		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
+		
 		<div class = "container" style = "width: 100vw;height: 100vh;">	
 			<h3 id = "textoAlinha"><strong>Consultar os pacientes - SAS</strong></h3>
 			</br> </br>
@@ -51,7 +39,7 @@
 		<!-- ======================= -->
 		<form action="#" method="post">
 			<div  class="container">  <!-- Container -->
-				<!-- CabeÃ§alho -->
+				<!-- Cabeçalho -->
 				<div class="row"> <!-- Linha -->
 					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Nome </b> </div>	
 					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Rg </b> </div>	
@@ -59,13 +47,13 @@
 					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Data de Nasc. </b> </div>	
 					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Telefone </b> </div>	
 					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Celular </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> AÃ§Ãµes </b> </div>	
+					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Ações </b> </div>	
 											<!-- <div  class="col-sm-4 col-md-4 col-lg-4">	-->
 				</div>
 					
 				<!-- <div  class="col-xs-9"> --> <!-- Coluna  -->
 				<div class="row" th:remove="${#arrays.isEmpty(pacientes)} ? all : 'all-but-first'">  
-					<div  class="col-sm-1 col-md-1 col-lg-1" th:text="${pacientes.nome}"> JoÃ£o das  neves </div>	
+					<div  class="col-sm-1 col-md-1 col-lg-1" th:text="${pacientes.nome}"> João das  neves </div>	
 					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${pacientes.rg}"> 000.0000.000-0</div>	
 					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${pacientes.cpf}"> 123.242.321-88</div>	
 					<div  class="col-sm-1 col-md-1 col-lg-1" th:text="${pacientes.dataNascimento}"> 20/01/2018 </div>	
@@ -93,5 +81,7 @@
 			</div>
 		</form>
 		</div>
+		<!-- 	<br> <br>	 -->
+		<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
 	</body>
 </html>

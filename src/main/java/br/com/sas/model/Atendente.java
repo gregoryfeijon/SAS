@@ -9,4 +9,8 @@ public class Atendente extends Pessoa {
 
 //	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	
+//	public void teste() {
+//		
+//		Atendente a = new Atendente().getDataNascimento()
+//	}
 }

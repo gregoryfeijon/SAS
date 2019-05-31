@@ -34,12 +34,12 @@ public class Pessoa {
 //	@Lob
 	private String cpf;
 	
-	@DateTimeFormat
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
-	private int telefone;
+	private String telefone;
 	
-	private int celular;
+	private String celular;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
@@ -82,19 +82,19 @@ public class Pessoa {
 		this.dataNascimento = dataNascimento;
 	}
 	
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 	
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 	
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 	
