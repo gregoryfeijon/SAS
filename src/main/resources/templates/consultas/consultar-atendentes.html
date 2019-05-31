@@ -66,10 +66,11 @@
 <!-- 				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${atendente.especialidade}"> Oftamologista </div>	 -->
 <!-- 				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${atendente.rg}">  -->
 						
+						<a th:href="${(#mvc.url('AC#edit').arg(0, atendente.id)).build()}">
 							<button type="submit" class="btn btn-secondary ">
 								<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
 							</button>
-						
+						</a>
 						<!-- INATIVAR -->
 							
 <!-- 					<a class="btn btn-secondary" th:href="@{/atendente/delete/${atendente.id}}" > -->

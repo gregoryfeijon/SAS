@@ -34,8 +34,12 @@ public class AtendenteController {
 	EnderecoService enderecoService;
 	
 	@GetMapping("/cadastrarAtendente")
-	public String form() {
-		return "cadastros/cadastro-atendente";
+	public ModelAndView form() {
+		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
+		Atendente atendente = new Atendente();
+		mv.addObject("atendente",atendente);
+		
+		return mv;
 	}
 	
 	
@@ -49,8 +53,8 @@ public class AtendenteController {
 		enderecoService.save(atendente.getEndereco());
 		atendenteService.save(atendente);
 		attributes.addFlashAttribute("mensagem", "Atendente cadastrado com sucesso!");
+		
 		return "redirect:/atendente/cadastrarAtendente";
-//		return findAll();
 	}
 	
 	
@@ -59,17 +63,34 @@ public class AtendenteController {
 		ModelAndView mv = new ModelAndView("consultas/consultar-atendentes");
 		
 		List<Atendente> listAtendentes = atendenteService.findAll();
-//		List<Pessoa> lista = pessoaService.findAll();
 		mv.addObject("listAtendentes", listAtendentes);
-//		mv.addObject("listAtendentes", atendenteService.findAll());
 		return mv;
 	}
 	
-//	@GetMapping("/editar/{id}")
-//	public ModelAndView edit(@PathVariable("id") long id) {
-//		
-//		return add(atendenteService.findOne(id));
-//	}
+	@GetMapping("/editar/{id}")
+	public ModelAndView edit(@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
+		Atendente atendente = atendenteService.findOne(id).get();
+		mv.addObject("atendente",atendente);
+		return mv;
+	}
+	
+	@PostMapping("/editar")
+	public String editar(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes){
+//		if(result.hasErrors()){
+//			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+//			return "redirect:/cadastrarEvento";
+//		}
+//		enderecoService.findOne(atendente.getEndereco().getId());
+		
+		enderecoService.save(enderecoService.findOne(atendente.getEndereco().getId()).get());
+		
+		atendenteService.save(atendenteService.findOne(atendente.getId()).get());
+		attributes.addFlashAttribute("mensagem", "Atendente cadastrado com sucesso!");
+		
+		return "redirect:/atendente/cadastrarAtendente";
+	}
+	
 	
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") long id) {

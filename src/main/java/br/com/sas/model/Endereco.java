@@ -22,6 +22,8 @@ public class Endereco {
 	private int numero;
 	
 	private int cep;
+	
+	private String cidade;
 
 	@Enumerated(EnumType.STRING)
 	private Estado estado;
@@ -73,6 +75,14 @@ public class Endereco {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 	
 	
