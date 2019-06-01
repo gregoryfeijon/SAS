@@ -16,7 +16,6 @@ public class Agendamento {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-//	private Date dataConsulta;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataConsulta;
 	
@@ -39,14 +38,6 @@ public class Agendamento {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-//	public Date getDataConsulta() {
-//		return dataConsulta;
-//	}
-//
-//	public void setDataConsulta(Date dataConsulta) {
-//		this.dataConsulta = dataConsulta;
-//	}
 	
 	public Double getValorConsulta() {
 		return valorConsulta;

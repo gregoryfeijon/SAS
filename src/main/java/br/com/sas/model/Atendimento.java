@@ -22,17 +22,13 @@ public class Atendimento {
 	
 	@ManyToMany
 	private List<Remedio> receita;
-
 	
 	@JoinColumn(unique=true)
 	@OneToOne
 	private Agendamento agendamento;
 	
 	
-	public Atendimento(Agendamento agendamento) {
-		this.agendamento = agendamento;
-	}
-
+	
 	// ================================ GETTERs  and SETTERs =====================================
 	public long getId() {
 		return id;

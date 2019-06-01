@@ -10,8 +10,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "id_pessoa")   		
 public class Paciente extends Pessoa {
 
-//	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-	
 	@ManyToMany
 	private List<Alergia> alergiasPaciente;
 

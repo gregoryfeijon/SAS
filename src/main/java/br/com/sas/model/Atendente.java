@@ -7,10 +7,4 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "id_pessoa")   		
 public class Atendente extends Pessoa {
 
-//	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-	
-//	public void teste() {
-//		
-//		Atendente a = new Atendente().getDataNascimento()
-//	}
 }

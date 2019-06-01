@@ -18,20 +18,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sas.model.Atendente;
 import br.com.sas.service.AtendenteService;
 import br.com.sas.service.EnderecoService;
-import br.com.sas.service.PessoaService;
 
 @Controller
 @RequestMapping("/atendente")
 public class AtendenteController {
 
 	@Autowired
-	AtendenteService atendenteService;
-	
-	@Autowired
-	PessoaService pessoaService;
+	private AtendenteService atendenteService;
 	
 	@Autowired 
-	EnderecoService enderecoService;
+	private EnderecoService enderecoService;
 	
 	@GetMapping("/cadastrarAtendente")
 	public ModelAndView form() {

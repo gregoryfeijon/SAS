@@ -1,6 +1,5 @@
 package br.com.sas.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,9 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-//import org.springframework.data.annotation.Id;
 
 @Entity
 //@Inheritance(strategy= InheritanceType.JOINED) 	
@@ -28,10 +24,8 @@ public class Pessoa {
 	
 	private String nome;
 	
-//	@Lob
 	private String rg;
 	
-//	@Lob
 	private String cpf;
 	
 	@Temporal(TemporalType.DATE)
@@ -43,6 +37,10 @@ public class Pessoa {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
+	
+	private String login;
+	
+	private String senha;
 	
 	@JoinColumn(unique=true)
 	@OneToOne
@@ -125,7 +123,22 @@ public class Pessoa {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 		
 }

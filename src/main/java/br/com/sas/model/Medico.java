@@ -9,7 +9,7 @@ public class Medico extends Pessoa {
 
 	private String especialidade;
 	
-	private int crm;
+	private String crm;
 	
 	// ================================ GETTERs  and SETTERs =====================================
 	public String getEspecialidade() {
@@ -20,11 +20,11 @@ public class Medico extends Pessoa {
 		this.especialidade = especialidade;
 	}
 
-	public int getCrm() {
+	public String getCrm() {
 		return crm;
 	}
 
-	public void setCrm(int crm) {
+	public void setCrm(String crm) {
 		this.crm = crm;
 	}
 	

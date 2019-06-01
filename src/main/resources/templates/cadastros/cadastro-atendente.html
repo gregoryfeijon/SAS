@@ -16,94 +16,89 @@
 				
 				<div class="form-row">
 				
-					<div class="form-group col-md-6">
-						<label for="nomePaciente"><strong>Nome</strong></label>
-						<input type="text" class="form-control" id="nomePaciente" th:field="*{nome}" name="nome" placeholder="Insira o nome do paciente...">
+					<div class="form-group col-md-4">
+						<label for="nomePaciente"><strong>Nome Completo</strong></label>
+						<input type="text" class="form-control" id="nomePaciente" th:field="*{nome}" name="nome" placeholder="Insira o nome da atendente...">
 					</div>
 					
-					<div class="form-group col-md-6">
-						<label for="inputEmail"><strong>E-mail</strong></label>
-						<input type="email" class="form-control" id="inputEmail" placeholder="Insira o e-mail do paciente...">
-					</div>
+					<div class="form-group col-md-2">
+						<label for="inputDataNasc"><strong>Data de nascimento</strong></label>
+						<input type="date" class="form-control" id="inputDataNasc" th:field="*{dataNascimento}" name="dataNascimento" placeholder="dd/mm/aaaa">
+					</div>	
 					
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-2">
 						<label for="inputTelefone"><strong>Telefone</strong></label>
 						<input type="number" class="form-control" id="inputTelefone" th:field="*{telefone}" name="telefone" placeholder="(XX) XXXX-XXXX">
 					</div>
 					
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-2">
 						<label for="inputCelular"><strong>Celular</strong></label>
 						<input type="number" class="form-control" id="inputCelular" th:field="*{celular}" name="celular" placeholder="(XX) YXXXX-XXXX">
 					</div>
 					
 					<!-- A senha de 1º acesso será criada com base em um padrão e posteriormente o usuário poderá mudá-la -->
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-2">
 						<label for="inputCEP"><strong>CEP</strong></label>
 						<input type="text" class="form-control" id="inputCEP" th:field="*{endereco.cep}" name="endereco.cep" placeholder="00000-000">
 					</div>
 					
 					<!-- Possivelmente carregue uma lista de cidade de acordo com estado e vire combobox?-->
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-3">
 						<label for="inputCidade"><strong>Cidade</strong></label>
 						<input type="text" class="form-control" id="inputCidade" th:field="*{endereco.cidade}" name="endereco.cidade" placeholder="Ex: Salto">
 					</div>
 					
 					<!-- Possivelmente combobox com estados brasileiros-->
-					<div class="form-group col-md-2">
+					<div class="form-group col-md-1">
 						<label for="inputEstado"><strong>Estado</strong></label>
 						<input type="text" class="form-control" id="inputEstado" th:field="*{endereco.estado}" name="endereco.estado" placeholder="Ex: SP">
+					</div>
+					
+					<div class="form-group col-md-3">
+						<label for="inputRua"><strong>Rua</strong></label>
+						<input type="text" class="form-control" id="inputRua" th:field="*{endereco.rua}" name= "endereco.rua" placeholder="Rua dos corumbatás">
+					</div>
+					
+					<div class="form-group col-md-3">
+						<label for="inputBairro"><strong>Bairro</strong></label>
+						<input type="text" class="form-control" id="inputBairro" th:field="*{endereco.bairro}" name = "endereco.bairro" placeholder="Salto de São José">
 					</div>
 					
 					<div class="form-group col-md-2">
 						<label for="inputNumero"><strong>Nº</strong></label>
 						<input type="number" class="form-control" id="inputNumero" th:field="*{endereco.numero}" name="endereco.numero" placeholder="Nº" min= "0" style = "inline">
 					</div>
-					
-					<div class="form-group col-md-8">
-						<label for="inputRua"><strong>Rua</strong></label>
-						<input type="text" class="form-control" id="inputRua" th:field="*{endereco.rua}" name= "endereco.rua" placeholder="Rua dos corumbatás">
-					</div>
 				
-					<div class="form-group col-md-4">
-						<label for="inputBairro"><strong>Bairro</strong></label>
-						<input type="text" class="form-control" id="inputBairro" th:field="*{endereco.bairro}" name = "endereco.bairro" placeholder="Salto de São José">
-					</div>
+				
 				</div>
 				  
 				<div class="form-row">
-					<div class="form-group col-md-5">
+					<div class="form-group col-md-6">
 						<label for="inputCPF"><strong>CPF</strong></label>
 						<input type="number" class="form-control" id="inputCPF" th:field="*{cpf}" name="cpf" placeholder="000.000.000-00">
 					</div>
 					
-					<div class="form-group col-md-4">
+					<div class="form-group col-md-6">
 						<label for="inputRG"><strong>RG</strong></label>
 						<input type="text" class="form-control" id="inputRG" th:field="*{rg}" name="" placeholder="00.000.000-0">
 					</div>
 					
-					<div class="form-group col-md-3">
-						<label for="inputDataNasc"><strong>Data de nascimento</strong></label>
-						<input type="date" class="form-control" id="inputDataNasc" th:field="*{dataNascimento}" name="dataNascimento" placeholder="dd/mm/aaaa">
-					</div>	
 				</div>
 				
 				<div class="form-row">
+					<input type="text" class="form-control" id="inputId" th:field="*{id}" name="id" hidden="true" >
+					
+<!-- 				<form th:method="POST" th:action="${(#mvc.url('AC#save').arg(0, atendente.id)).build()}"> -->
+					<a class = "form-group col-md-6" th:href="${(#mvc.url('AC#save').arg(0, atendente.id)).build()}">
+						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar</strong></button>
+					</a>
+					
 					<div class = "form-group col-md-6">
 						<button type="submit" class="btn btn-secondary col-md-12"><strong>Cadastrar</strong></button>
 					</div>
 					
-<!-- 					<form th:method="POST" th:action="${(#mvc.url('AC#save').arg(0, atendente.id)).build()}"> -->
-						<a class = "form-group col-md-6" th:href="${(#mvc.url('AC#save').arg(0, atendente.id)).build()}">
-							<button type="submit" class="btn btn-secondary" >
-								<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar</strong></button>
-							</button>
-						</a>
-						
-					<div class="form-group col-md-6">
-						<input type="text" class="form-control" id="inputId" th:field="*{id}" name="id" hidden="true" placeholder="Insira o nome do paciente...">
-					</div>
-				
 				</div>
+				
 			</form>
 		</div>
 		

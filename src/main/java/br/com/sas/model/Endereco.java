@@ -14,6 +14,8 @@ public class Endereco {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+
+	private String cidade;
 	
 	private String rua;
 	
@@ -21,9 +23,7 @@ public class Endereco {
 	
 	private int numero;
 	
-	private int cep;
-	
-	private String cidade;
+	private String cep;
 
 	@Enumerated(EnumType.STRING)
 	private Estado estado;
@@ -61,11 +61,11 @@ public class Endereco {
 		this.numero = numero;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

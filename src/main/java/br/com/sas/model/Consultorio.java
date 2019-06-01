@@ -1,6 +1,5 @@
 package br.com.sas.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Consultorio {
@@ -26,8 +24,11 @@ public class Consultorio {
 	
 	private String nomeFantasia;
 	
-//	private Date dataCriacao;
-	private LocalDate dataCriacao;
+	private Date dataCriacao;
+	
+	private String telefone;
+	
+	private String celular;
 	
 	@ManyToOne
 	private Medico medicoCriador;
@@ -36,13 +37,17 @@ public class Consultorio {
     @OneToOne
 	private Endereco enderecoConsultorio;
 	
-//	@LazyCollection : VER SE É ESSA A ANOTAÇÃO, QUE FAZ O TRABALHO DE ("LAZY LOAD")
 	@ManyToMany
 	private List<Medico> medicos;
 	
 	@ManyToMany
 	private List<Agendamento> agendamentos;
 
+	@ManyToMany
+	private List<Paciente> pacientes;
+	
+	@ManyToMany
+	private List<Atendente> atendentes;
 	
 	
 	// ================================ GETTERs  and SETTERs =====================================
@@ -86,11 +91,11 @@ public class Consultorio {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public LocalDate getDataCriacao() {
+	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
+	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
@@ -116,6 +121,38 @@ public class Consultorio {
 
 	public void setAgendamentos(List<Agendamento> agendamentos) {
 		this.agendamentos = agendamentos;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
+	}
+
+	public List<Atendente> getAtendentes() {
+		return atendentes;
+	}
+
+	public void setAtendentes(List<Atendente> atendentes) {
+		this.atendentes = atendentes;
 	}
 
 	
