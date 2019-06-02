@@ -1,0 +1,12 @@
+
+
+<div th:fragment="mensagemValidacao">
+	<div class="alert alert-danger alert-dismissible" role="alert" th:each= "msg : ${mensagem}" th:if="${not #strings.isEmpty(mensagem)}">
+		<span th:text="${msg}"></span>
+	</div>
+	
+	<div class="alert alert-success alert-dismissible" role="alert" th:each= "msg : ${mensagem}" th:if="${#strings.isEmpty(mensagem)}">
+		<span th:text="${msg}"></span>
+	</div>
+</div>
+

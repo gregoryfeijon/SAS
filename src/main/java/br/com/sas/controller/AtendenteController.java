@@ -1,5 +1,6 @@
 package br.com.sas.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sas.enums.Estado;
 import br.com.sas.model.Atendente;
 import br.com.sas.service.AtendenteService;
 import br.com.sas.service.EnderecoService;
@@ -34,23 +36,30 @@ public class AtendenteController {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
 		Atendente atendente = new Atendente();
 		mv.addObject("atendente",atendente);
+		mv.addObject("estados", Arrays.asList(Estado.values()));
 		
 		return mv;
 	}
 	
 	
 	@PostMapping("/cadastrarAtendente")
-	public String save(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes){
-//		if(result.hasErrors()){
-//			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-//			return "redirect:/cadastrarEvento";
-//		}
+	public ModelAndView save(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes){
+		if(result.hasErrors()){
+			ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
+			mv.addObject("estados", Arrays.asList(Estado.values()));
+			// Passando o mesmo obj recebido, para manter os dados informados, no formulario
+			mv.addObject("atendente", atendente);
+			mv.addObject("mensagem", atendenteService.getMensagensErros(result));
+			
+			return mv;
+		}
 		
+		ModelAndView mv = new ModelAndView("redirect:/atendente/cadastrarAtendente");
 		enderecoService.save(atendente.getEndereco());
 		atendenteService.save(atendente);
 		attributes.addFlashAttribute("mensagem", "Atendente cadastrado com sucesso!");
 		
-		return "redirect:/atendente/cadastrarAtendente";
+		return mv;
 	}
 	
 	
@@ -68,6 +77,7 @@ public class AtendenteController {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
 		Atendente atendente = atendenteService.findOne(id).get();
 		mv.addObject("atendente",atendente);
+		mv.addObject("estados", Arrays.asList(Estado.values()));
 		return mv;
 	}
 	

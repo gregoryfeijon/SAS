@@ -14,6 +14,9 @@
 			<form th:action="@{/atendente/cadastrarAtendente}" th:object="${atendente}" method="POST"  >
 				<h3 id = "textoAlinha"><strong>Cadastro de Atendente - SAS</strong></h3>
 				
+				<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
+				
+				 
 				<div class="form-row">
 				
 					<div class="form-group col-md-4">
@@ -51,7 +54,10 @@
 					<!-- Possivelmente combobox com estados brasileiros-->
 					<div class="form-group col-md-1">
 						<label for="inputEstado"><strong>Estado</strong></label>
-						<input type="text" class="form-control" id="inputEstado" th:field="*{endereco.estado}" name="endereco.estado" placeholder="Ex: SP">
+						<select class="custom-select" >
+						  <option selected > </option>
+						  	<option th:field="*{endereco.estado}"  th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}" ></option>
+						</select>
 					</div>
 					
 					<div class="form-group col-md-3">
@@ -75,7 +81,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="inputCPF"><strong>CPF</strong></label>
-						<input type="number" class="form-control" id="inputCPF" th:field="*{cpf}" name="cpf" placeholder="000.000.000-00">
+						<input type="text" class="form-control" id="inputCPF" th:field="*{cpf}" name="cpf" placeholder="000.000.000-00">
 					</div>
 					
 					<div class="form-group col-md-6">

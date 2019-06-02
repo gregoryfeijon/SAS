@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -22,20 +26,26 @@ public class Pessoa {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
+	@NotBlank(message = "O nome é obrigatório")
 	private String nome;
 	
+	@NotBlank(message = "O RG é obrigatório")
 	private String rg;
 	
+	@CPF(message = "CPF inválido!!!")
 	private String cpf;
 	
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataNascimento;
 	
 	private String telefone;
 	
 	private String celular;
 	
+	
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataCadastro;
 	
 	private String login;
