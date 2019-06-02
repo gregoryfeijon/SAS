@@ -3,13 +3,14 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		  
 	<head lang="pt-br" th:include="/fragments/head :: head">
-		  
 		<title>Consultar Médicos</title>
 	</head>
+	
 	<body>
+		
 		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 		
-		<div class = "container" style = "width: 100vw;height: 100vh;">	
+<!-- <div class = "container" style = "width: 100vw;height: 100vh;">	 -->
 			<h3 id = "textoAlinha"><strong>Consultar os atendentes - SAS</strong></h3>
 			</br> </br>
 		
@@ -38,61 +39,64 @@
 		</div>
 		
 		<!-- ======================= -->
-<!-- 		<form th:action="@{/atendente/delete/" th:method="DELETE" action="#"> -->
-<!-- 		<form th:method="Delete" action="/atendente/delete/"> -->
-			<div class="container">  <!-- Container -->
-				<!-- Cabeçalho -->
-				<div class="row"> <!-- Linha -->
-				
-					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> ID </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Data Nasc. </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Nome </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Telefone </b> </div>	
-					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Celular </b> </div>	
-<!-- 					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Especialidade </b> </div>	 -->
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Ações </b> </div>	
+
+		<table class="table  table-hover table-responsive container ">
+			<thead>
+				<tr>
+					<th scope="col"> <b> ID </b> </th>	
+					<th scope="col"> <b> Data Nasc. </b> </th>
+					<th scope="col"> <b> RG </b> </th>	
+					<th scope="col"> <b> CPF </b> </th>		
+					<th scope="col"> <b> Nome </b> </th>	
+					<th scope="col"> <b> Telefone </b> </th>	
+					<th scope="col"> <b> Celular </b> </th>	
+					<th scope="col"> <b> Editar </b> </th>	
+					<th scope="col"> <b> Deletar </b> </th>	
+					<th scope="col"> <b> Mais Um </b> </th>	
+				</tr>
+			</thead>
 					
-											<!-- <div  class="col-sm-4 col-md-4 col-lg-4">	-->
-				</div>
-					
-<!-- 				<div  class="col-xs-9"> Coluna  -->
-<!-- 				<div class="row" th:remove="${#arrays.isEmpty(listAtendentes} ? all : 'all-but-first'">   -->
-				<div th:each="atendente : ${listAtendentes}" class="row"> 
-					<div class="col-sm-1 col-md-1 col-lg-1" th:text="${atendente.id}"> 2</div>
-					<div class="col-sm-2 col-md-2 col-lg-2" th:text="${atendente.dataNascimento}"> 01/02/2019 </div>	
-					<div class="col-sm-2 col-md-2 col-lg-2" th:text="${atendente.nome}"> Steve Jobs </div>	
-					<div class="col-sm-2 col-md-2 col-lg-2" th:text="${atendente.telefone}"> (00) 00000-0000 </div>	
-				    <div class="col-sm-1 col-md-1 col-lg-1" th:text="${atendente.celular}"> (00) 0000-0000 </div>	
-<!-- 				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${atendente.especialidade}"> Oftamologista </div>	 -->
-<!-- 				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${atendente.rg}">  -->
-						
+			<tbody>
+				<tr th:each="atendente : ${listAtendentes}">
+					<th scope="row" th:text="${atendente.id}"> 2</th>
+					<td scope="row" th:text="${#dates.format(atendente.dataNascimento, 'dd-MM-yyyy')}"> 01/02/2019 </td>	
+					<td scope="row" th:text="${atendente.rg}"> 12.000.021-90 </td>	
+					<td scope="row" th:text="${atendente.cpf}"> 123.321.901-99 </td>	
+					<td scope="row" th:text="${atendente.nome}"> Steve Jobs </td>	
+					<td scope="row" th:text="${atendente.telefone}"> (00) 00000-0000 </td>	
+					<td scope="row" th:text="${atendente.celular}"> (00) 0000-0000 </td>
+								
+<!-- 	 				EDITAR -->
+	 				<td	scope="row">
 						<a th:href="${(#mvc.url('AC#edit').arg(0, atendente.id)).build()}">
 							<button type="submit" class="btn btn-secondary ">
 								<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
 							</button>
 						</a>
-						<!-- INATIVAR -->
-							
-<!-- 					<a class="btn btn-secondary" th:href="@{/atendente/delete/${atendente.id}}" > -->
+					</td>
+
+					<!-- DELETAR/INATIVAR -->
+					<td	scope="row">		
 						<form th:method="DELETE" th:action="${(#mvc.url('AC#delete').arg(0, atendente.id)).build()}">
 							<button type="submit" class="btn btn-secondary" >
 								<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg" width="25px" height="25px"> 
 							</button>
 						</form>
-<!-- 						</a> -->
-							
-							<!--  cadastrar -->
-							<a class="btn btn-secondary" th:href="@{/atendente/cadastrarAtendente}">
-<!-- 								<button type="button" class="btn btn-secondary" >  -->
-									<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
-<!-- 								</button> -->
-							</a>
-					</div>	
-				</div>                           
-<!-- 		</form> -->
-		</div>
-		
-		<!-- 	<br> <br>	 -->
-    <div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
+					</td>
+					
+					<!--  CADASTRAR/ MAIS UM -->
+					<td	scope="row">	
+						<a class="btn btn-secondary" th:href="@{/atendente/cadastrarAtendente}">
+							<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
+						</a>
+					</td>
+					
+				 </tr>
+			</tbody>
+		</table>
+			
+<!-- 	</div>		             -->
+	<!-- 	<br> <br>	 -->
+    	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
 	</body>
 </html>

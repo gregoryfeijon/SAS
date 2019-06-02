@@ -1,9 +1,52 @@
 body {
-	background-image: linear-gradient(to bottom right, hsla(200, 65%, 40%, 0.5), white);
+	background-image: linear-gradient(to bottom right, hsla(200, 65%, 40%, 0.5), white );
 	/*background-color: hsla(200, 65%, 40%, 0.5); /* para navegadores que não suportem o linear-gradient*/
-	background-repeat: no-repeat;
+	--background-repeat: no-repeat;
+
 	background-size: 100% 100%;
-	margin:0;
+	margin: 0;
+
+	position: relative;
+	
+}
+
+table {
+	border: 1px solid #2F4F4F;
+	border-top : none;
+	border-right : none;
+	border-bottom : none;
+	
+	--padding-bottom : 3;
+	position: relative;
+}
+
+table th{
+	
+	background-color: hsla(200, 65%, 40%, 0.5);
+	color: white;
+}
+
+table td{
+	border: 1px solid #2F4F4F;
+			
+}
+
+
+footer {
+	
+	width: 100%;
+	height: auto;
+	margin: auto;
+	bottom: 0;
+	
+	background : hsla(200, 35%, 40%, 0.3);
+	--background: #0c0c0c;
+  --  position: fixed;
+   position: relative;
+	
+   left: 0;
+   bottom: 0;
+   width: 100%;
 }
 
 #textoAlinha{

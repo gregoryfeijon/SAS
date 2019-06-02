@@ -49,7 +49,7 @@ public class AtendenteController {
 			mv.addObject("estados", Arrays.asList(Estado.values()));
 			// Passando o mesmo obj recebido, para manter os dados informados, no formulario
 			mv.addObject("atendente", atendente);
-			mv.addObject("mensagem", atendenteService.getMensagensErros(result));
+			mv.addObject("mensagemErro", atendenteService.getMensagensErros(result));
 			
 			return mv;
 		}
@@ -57,7 +57,7 @@ public class AtendenteController {
 		ModelAndView mv = new ModelAndView("redirect:/atendente/cadastrarAtendente");
 		enderecoService.save(atendente.getEndereco());
 		atendenteService.save(atendente);
-		attributes.addFlashAttribute("mensagem", "Atendente cadastrado com sucesso!");
+		attributes.addFlashAttribute("mensagemSucesso", "Atendente cadastrado com sucesso!");
 		
 		return mv;
 	}
