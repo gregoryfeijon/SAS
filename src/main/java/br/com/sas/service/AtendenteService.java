@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -21,6 +23,12 @@ public class AtendenteService {
 	public List<Atendente> findAll() {
 		return repository.findAll();
 	}
+	
+	public Page<Atendente> findAll(PageRequest pr) {
+//		PageRequest.of(page, 5)
+		return repository.findAll(pr);
+	}
+	
 	
 	public Optional<Atendente> findOne(Long id) {
 		return repository.findById(id); 

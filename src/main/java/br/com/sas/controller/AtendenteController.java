@@ -1,18 +1,20 @@
 package br.com.sas.controller;
 
 import java.util.Arrays;
-import java.util.List;
-
+	
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,8 +45,8 @@ public class AtendenteController {
 	
 	
 	@PostMapping("/cadastrarAtendente")
-	public ModelAndView save(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes){
-		if(result.hasErrors()){
+	public ModelAndView save(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
 			ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
 			mv.addObject("estados", Arrays.asList(Estado.values()));
 			// Passando o mesmo obj recebido, para manter os dados informados, no formulario
@@ -64,11 +66,15 @@ public class AtendenteController {
 	
 	
 	@GetMapping("/consultar")
-	public ModelAndView findAll() {
+//	public ModelAndView findAll(Model model, @PageableDefault(size=5)Pageable pageable, @RequestParam(defaultValue="0") int page)  {
+	public ModelAndView findAll(Model model, @RequestParam(defaultValue="0") int page) {
 		ModelAndView mv = new ModelAndView("consultas/consultar-atendentes");
+//		List<Atendente> listAtendentes = atendenteService.findAll();
+//		mv.addObject("listAtendentes", listAtendentes);
 		
-		List<Atendente> listAtendentes = atendenteService.findAll();
-		mv.addObject("listAtendentes", listAtendentes);
+//		List<Atendente> listAtendentes = atendenteService.findAll(PageRequest.of(page, 5));
+		mv.addObject("listAtendentes", atendenteService.findAll(PageRequest.of(page, 5)));
+		model.addAttribute("paginaAtual",page);
 		return mv;
 	}
 	
@@ -99,9 +105,12 @@ public class AtendenteController {
 	
 	
 	@DeleteMapping("/delete/{id}")
-	public ModelAndView delete(@PathVariable("id") long id) {
+	public ModelAndView delete(@PathVariable("id") long id, Model model, @RequestParam(defaultValue="0") int page) {
 		atendenteService.deleteById(id);
-		return findAll();
+		return findAll(model,page);
+		
+//		return new ModelAndView("consultas/consultar-atendentes");
+//		return findAll();
 	}
 	
 	

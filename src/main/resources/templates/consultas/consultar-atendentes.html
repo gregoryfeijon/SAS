@@ -93,9 +93,27 @@
 					
 				 </tr>
 			</tbody>
-		</table>
 			
-<!-- 	</div>		             -->
+		<ul class="nav nav-pills ">
+			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listAtendentes.totalPages-1)}">
+			 	<a th:href="@{/atendente/consultar/(page=${pg})}"  th:text="${pg} +1" class="nav-link"  
+			 		th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1
+			 	</a>
+			</li>	
+		</ul>
+		
+		</table>
+		
+		
+		<ul class="nav nav-pills ">
+			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listAtendentes.totalPages)}">
+			 	<a th:href="@{/atendente/consultar/(page=${pg})}"  th:text="${pg} +1" class="nav-link"  
+			 		th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1
+			 	</a>
+			</li>	
+		</ul>
+
+
 	<!-- 	<br> <br>	 -->
     	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
 	</body>
