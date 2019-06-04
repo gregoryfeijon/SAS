@@ -62,6 +62,7 @@ public class Pessoa {
 		return id;
 	}
 	
+	//esqueceu de mudar ou está usando mesmo setting de int???
 	public void setId(int id) {
 		this.id = id;
 	}

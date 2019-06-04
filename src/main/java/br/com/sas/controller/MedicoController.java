@@ -1,43 +1,31 @@
 package br.com.sas.controller;
 
-import javax.validation.Valid;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
-import br.com.sas.model.Atendente;
-import br.com.sas.repository.AtendenteRepository;
+import br.com.sas.enums.Estado;
+import br.com.sas.model.Medico;
+import br.com.sas.service.MedicoService;
 
 @Controller
 @RequestMapping("/medico")
 public class MedicoController {
 
 	@Autowired
-	AtendenteRepository ar;
+	MedicoService medicoService;
 	
-	@GetMapping("/formMedico")
-//	@ResponseBody
-	public String form() {
+	@GetMapping("/cadastrarMedico")
+	public ModelAndView cadastrarMedicoForm() {
+		ModelAndView mv = new ModelAndView("cadastros/cadastro-medico");
+		Medico medico = new Medico();
+		mv.addObject("medico", medico);
+		mv.addObject("estados", Arrays.asList(Estado.values()));
 		
-		return "cadastros/cadastro-medico";
-//		return "consultas/consultar-medicos";
+		return mv;
 	}
-	
-	
-//	@PostMapping("/cadastrarAtendente")
-//	public String form(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes){
-////		if(result.hasErrors()){
-////			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-////			return "redirect:/cadastrarEvento";
-////		}
-//		
-//		ar.save(atendente);
-//		attributes.addFlashAttribute("mensagem", "Atendente cadastrado com sucesso!");
-//		return "redirect:/";
-//	}
 }

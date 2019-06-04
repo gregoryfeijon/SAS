@@ -11,8 +11,10 @@
 		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 	
 		<div class = "container" style = "width: 100vw;height: 100vh;">	
-			<form>
+			<form th:action="@{/medico/cadastrarEditarMedico}" th:object="${medico}" method="POST">
 				<h3 id = "textoAlinha"><strong>Cadastro de Médico - SAS</strong></h3>
+				
+				<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
 				
 				<div class="form-row">
 				
@@ -51,20 +53,23 @@
 					<!-- Possivelmente combobox com estados brasileiros-->
 					<div class="form-group col-md-1">
 						<label for="inputEstado"><strong>Estado</strong></label>
-						<input type="text" class="form-control" id="inputEstado" th:field="*{endereco.estado}" name="endereco.estado" placeholder="Ex: SP">
+						<select class="custom-select" >
+						  <option selected > </option>
+						  	<option th:field="*{endereco.estado}"  th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}" ></option>
+						</select>
 					</div>
 					
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-4">
 						<label for="inputRua"><strong>Rua</strong></label>
-						<input type="text" class="form-control" id="inputRua" th:field="*{endereco.rua}" name= "endereco.rua" placeholder="Rua dos corumbatás">
+						<input type="text" class="form-control" id="inputRua" th:field="*{endereco.rua}" name= "endereco.rua" placeholder="Ex: Rua dos corumbatás">
 					</div>
 					
 					<div class="form-group col-md-3">
 						<label for="inputBairro"><strong>Bairro</strong></label>
-						<input type="text" class="form-control" id="inputBairro" th:field="*{endereco.bairro}" name = "endereco.bairro" placeholder="Salto de São José">
+						<input type="text" class="form-control" id="inputBairro" th:field="*{endereco.bairro}" name = "endereco.bairro" placeholder="Ex: Salto de São José">
 					</div>
 					
-					<div class="form-group col-md-2">
+					<div class="form-group col-md-1">
 						<label for="inputNumero"><strong>Nº</strong></label>
 						<input type="number" class="form-control" id="inputNumero" th:field="*{endereco.numero}" name="endereco.numero" placeholder="Nº" min= "0" style = "inline">
 					</div>
@@ -73,18 +78,18 @@
 				</div>
 				  
 				<div class="form-row">
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-2">
 						<label for="inputCPF"><strong>CPF</strong></label>
 						<input type="number" class="form-control" id="inputCPF" th:field="*{cpf}" name="cpf" placeholder="000.000.000-00">
 					</div>
 					
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-2">
 						<label for="inputRG"><strong>RG</strong></label>
 						<input type="text" class="form-control" id="inputRG" th:field="*{rg}" name="" placeholder="00.000.000-0">
 					</div>	
 					
 					
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-2">
 							<label for="inputDataNasc"><strong>CRM</strong></label>
 							<input type="text" class="form-control" id="inputCRM" name = "crm" placeholder="00000000-0">
 					</div>
@@ -94,15 +99,24 @@
 					</div>
 				</div>
 				
-					
 				<div class="form-row">
+					<input type="text" class="form-control" id="inputId" th:field="*{id}" name="id" hidden="true">
+					
+					<div class = "form-group col-md-12">
+						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar/Cadastrar</strong></button>
+					</div>
+					
+				</div>
+					
+		<!--	<div class="form-row">
 					<div class = "form-group col-md-6">
 						<button type="submit" class="btn btn-secondary col-md-12"><strong>Cadastrar</strong></button>
 					</div>
 					<div class = "form-group col-md-6">
 						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar</strong></button>
 					</div>
-				</div>
+				</div> -->
+				
 			</form>
 		</div>
 		

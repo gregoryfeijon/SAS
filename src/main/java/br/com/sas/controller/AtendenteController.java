@@ -43,7 +43,7 @@ public class AtendenteController {
 		return mv;
 	}
 	
-	// Método que serve para salvar um cadastro, e ou editar
+	// Método que serve para salvar um cadastro e/ou editar
 	@PostMapping("/cadastrarEditarAtendente")
 	public ModelAndView save(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
