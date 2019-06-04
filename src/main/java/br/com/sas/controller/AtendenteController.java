@@ -64,6 +64,7 @@ public class AtendenteController {
 	}
 	
 	// Método que irá carregar na tela de cadastro, os valores cadastrados de um atendente (para poder editar)
+	//TODO - NÃO PRECISA POR O "id" NO PATHVARIABLE -> SÓ O NOME DO PARÂMETRO SER IGUAL O QUE ESTÁ NA URL!
 	@GetMapping("/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
