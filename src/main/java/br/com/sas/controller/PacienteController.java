@@ -19,56 +19,56 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sas.enums.Estado;
-import br.com.sas.model.Atendente;
-import br.com.sas.service.AtendenteService;
+import br.com.sas.model.Paciente;
+import br.com.sas.service.PacienteService;
 import br.com.sas.service.EnderecoService;
 
 @Controller
-@RequestMapping("/atendente")
-public class AtendenteController {
+@RequestMapping("/paciente")
+public class PacienteController {
 
 	@Autowired
-	private AtendenteService atendenteService;
+	private PacienteService pacienteService;
 	
 	@Autowired 
 	private EnderecoService enderecoService;
 	
-	@GetMapping("/cadastrarAtendente")
+	@GetMapping("/cadastrarPaciente")
 	public ModelAndView form() {
-		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
-		Atendente atendente = new Atendente();
-		mv.addObject("atendente",atendente);
+		ModelAndView mv = new ModelAndView("cadastros/cadastro-paciente");
+		Paciente paciente = new Paciente();
+		mv.addObject("paciente",paciente);
 		mv.addObject("estados", Arrays.asList(Estado.values()));
 		
 		return mv;
 	}
 	
 	// Método que serve para salvar um cadastro, e ou editar
-	@PostMapping("/cadastrarEditarAtendente")
-	public ModelAndView save(@Valid Atendente atendente, BindingResult result, RedirectAttributes attributes) {
+	@PostMapping("/cadastrarEditarPaciente")
+	public ModelAndView save(@Valid Paciente paciente, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
-			ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
+			ModelAndView mv = new ModelAndView("cadastros/cadastro-paciente");
 			mv.addObject("estados", Arrays.asList(Estado.values()));
 			// Passando o mesmo obj recebido, para manter os dados informados, no formulario
-			mv.addObject("atendente", atendente);
-			mv.addObject("mensagemErro", atendenteService.getMensagensErros(result));
+			mv.addObject("paciente", paciente);
+			mv.addObject("mensagemErro", pacienteService.getMensagensErros(result));
 			
 			return mv;
 		}
-		ModelAndView mv = new ModelAndView("redirect:/atendente/cadastrarAtendente");
-		enderecoService.save(atendente.getEndereco());
-		atendenteService.save(atendente);
-		attributes.addFlashAttribute("mensagemSucesso", "Atendente alterado/cadastrado com sucesso!");
+		ModelAndView mv = new ModelAndView("redirect:/paciente/cadastrarPaciente");
+		enderecoService.save(paciente.getEndereco());
+		pacienteService.save(paciente);
+		attributes.addFlashAttribute("mensagemSucesso", "Paciente alterado/cadastrado com sucesso!");
 		
 		return mv;
 	}
 	
-	// Método que irá carregar na tela de cadastro, os valores cadastrados de um atendente (para poder editar)
+	// Método que irá carregar na tela de cadastro, os valores cadastrados de um paciente (para poder editar)
 	@GetMapping("/editar/{id}")
 	public ModelAndView edit(@PathVariable("id") long id) {
-		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
-		Atendente atendente = atendenteService.findOne(id).get();
-		mv.addObject("atendente",atendente);
+		ModelAndView mv = new ModelAndView("cadastros/cadastro-paciente");
+		Paciente paciente = pacienteService.findOne(id).get();
+		mv.addObject("paciente",paciente);
 		mv.addObject("estados", Arrays.asList(Estado.values()));
 		return mv;
 	}
@@ -76,8 +76,8 @@ public class AtendenteController {
 	// Método que irá carregar todos os atendentes, na tabela
 	@GetMapping("/consultar")
 	public ModelAndView findAll(Model model, @RequestParam(defaultValue="0") int page) {
-		ModelAndView mv = new ModelAndView("consultas/consultar-atendentes");
-		mv.addObject("listAtendentes", atendenteService.findAll(PageRequest.of(page, 5)));
+		ModelAndView mv = new ModelAndView("consultas/consultar-paciente");
+		mv.addObject("listPacientes", pacienteService.findAll(PageRequest.of(page, 5)));
 		model.addAttribute("paginaAtual",page);
 		return mv;
 	}
@@ -85,9 +85,9 @@ public class AtendenteController {
 	
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") long id, RedirectAttributes attributes) {
-		atendenteService.deleteById(id);
-		attributes.addFlashAttribute("mensagemSucesso", "Atendente deletado com sucesso!");
-		return new ModelAndView("redirect:/atendente/consultar");
+		pacienteService.deleteById(id);
+		attributes.addFlashAttribute("mensagemSucesso", "Paciente deletado com sucesso!");
+		return new ModelAndView("redirect:/paciente/consultar");
 	}
 	
 	

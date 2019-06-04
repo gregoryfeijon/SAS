@@ -14,7 +14,8 @@
 			<h3 id = "textoAlinha"><strong>Consultar os atendentes - SAS</strong></h3>
 			</br> </br>
 		
-		
+		<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
+			
 		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
 			<div class="input-group-prepend">
 				<label><b>Pesquisar Por: </b></label>
@@ -86,7 +87,7 @@
 					
 					<!--  CADASTRAR/ MAIS UM -->
 					<td	scope="row">	
-						<a class="btn btn-secondary" th:href="@{/atendente/cadastrarAtendente}">
+						<a class="btn btn-secondary" th:href="@{/atendente/cadastrarEditarAtendente}">
 							<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
 						</a>
 					</td>

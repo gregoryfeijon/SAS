@@ -11,7 +11,7 @@
 	 	<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 		
 		<div class = "container" style = "width: 100vw;height: 100vh;">	
-			<form th:action="@{/atendente/cadastrarAtendente}" th:object="${atendente}" method="POST"  >
+			<form th:action="@{/atendente/cadastrarEditarAtendente}" th:object="${atendente}" method="POST"  >
 				<h3 id = "textoAlinha"><strong>Cadastro de Atendente - SAS</strong></h3>
 				
 				<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
@@ -71,7 +71,7 @@
 					</div>
 					
 					<div class="form-group col-md-2">
-						<label for="inputNumero"><strong>Nº</strong></label>
+						<label for="inputNumero"><strong>*Nº</strong></label>
 						<input type="number" class="form-control" id="inputNumero" th:field="*{endereco.numero}" name="endereco.numero" placeholder="Nº" min= "0" style = "inline">
 					</div>
 				
@@ -95,12 +95,12 @@
 					<input type="text" class="form-control" id="inputId" th:field="*{id}" name="id" hidden="true" >
 					
 <!-- 				<form th:method="POST" th:action="${(#mvc.url('AC#save').arg(0, atendente.id)).build()}"> -->
-					<a class = "form-group col-md-6" th:href="${(#mvc.url('AC#save').arg(0, atendente.id)).build()}">
-						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar</strong></button>
-					</a>
+<!-- 					<a class = "form-group col-md-6" th:href="${(#mvc.url('AC#save').arg(0, atendente.id)).build()}"> -->
+<!-- 						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar</strong></button> -->
+<!-- 					</a> -->
 					
-					<div class = "form-group col-md-6">
-						<button type="submit" class="btn btn-secondary col-md-12"><strong>Cadastrar</strong></button>
+					<div class = "form-group col-md-12">
+						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar/Cadastrar</strong></button>
 					</div>
 					
 				</div>
