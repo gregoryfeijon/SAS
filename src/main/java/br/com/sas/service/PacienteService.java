@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
-import br.com.sas.model.Atendente;
 import br.com.sas.model.Paciente;
 import br.com.sas.repository.PacienteRepository;
 
@@ -49,5 +48,5 @@ public class PacienteService {
 		}
 		return msg;
 	}
-	
+
 }
