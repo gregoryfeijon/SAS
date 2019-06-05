@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 public class Consultorio {
@@ -18,8 +21,10 @@ public class Consultorio {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
+	@NotBlank
 	private String nome;
 	
+	@CNPJ
 	private String cnpj;
 	
 	private String nomeFantasia;

@@ -63,13 +63,9 @@ public class AtendenteController {
 		return mv;
 	}
 
-	// Método que irá carregar na tela de cadastro, os valores cadastrados de um
-	// atendente (para poder editar)
-	// TODO - NÃO PRECISA POR O "id" NO PATHVARIABLE -> SÓ O NOME DO PARÂMETRO SER
-	// IGUAL O QUE ESTÁ NA URL! DA TAMBÉM UMA OLHADA NA CLASSE QUE EU FIZ AUXILIAR E
-	// NO CONTROLLER DE MÉDICO, VE SE TU ACHA DESNECESSÁRIO
+	// Método que irá carregar na tela de cadastro, os valores cadastrados de um atendente (para poder editar)
 	@GetMapping("/editar/{id}")
-	public ModelAndView edit(@PathVariable("id") long id) {
+	public ModelAndView edit(@PathVariable long id) {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-atendente");
 		Atendente atendente = atendenteService.findOne(id).get();
 		mv.addObject("atendente", atendente);
