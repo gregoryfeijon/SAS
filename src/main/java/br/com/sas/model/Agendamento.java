@@ -2,6 +2,7 @@ package br.com.sas.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Agendamento {
@@ -17,14 +21,19 @@ public class Agendamento {
 	private long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Por favor, informe a DATA, da do agendamneto da consulta")
 	private Date dataConsulta;
 	
+	@NotNull(message = "Por favor, informe o valor da consulta")
 	private Double valorConsulta;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.DETACH})
+//	@NotNull(message = "É necessário, que tenha um MÉDICO, no agendamento")
 	private Medico medico;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.DETACH})
+//	@NotNull(message = "É necessário, que tenha um PACIENTE, no agendamento")
 	private Paciente paciente;
 	
 //	On

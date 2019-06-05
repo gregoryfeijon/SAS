@@ -2,48 +2,39 @@
 <html lang="pt-br" xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/styleAgendamento.css">
 	
-		
-		
-	   
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" >
-
-
-		<script src="js/javaScript.js" type="text/javascript"></script>   
-		
-		
-		<style>
-	
-		</style>
+		<head lang="pt-br" th:include="/fragments/head :: head"> 
 		
 		<title>Agendamento de consulta</title>
 	</head>
-	<body>
-		<div class = "container"  style = "width: 100vw;height: 100vh;">	
-			<form>
+	<body class ="gradient">
+		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
+		
+<!-- 		<div class = "container"  style = "width: 100vw;height: 100vh;">	 -->
+			<form th:action="@{/agendamento/cadastrarEditarAgendamento}" th:object="${agendamento}" method="POST"  >
+
 				<h3 id = "textoAlinha"><strong>Agendamento de consulta - SAS</strong></h3>
+				
+				<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
 				
 				<div class="form-row">
 				<!-- Provavelmente no médico e no paciente será uma lista, carregada no combobox, ou alguma, que as pessoas informadas sejam as msms que tem no BD -->
 					<div class="form-group col-md-6">
 						<label for="txtNomePaciente"><strong>Nome do paciente</strong></label>
-						<input type="text" class="form-control" id="txtNomePaciente" name="paciente" placeholder="Insira o nome do paciente...">
+						<select class="custom-select" >
+						  <option selected > </option>
+						  	<option th:field="*{paciente.id}"  th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}" ></option>
+						</select>
+<!-- 						<input type="text" class="form-control" id="txtNomePaciente" name="paciente" placeholder="Insira o nome do paciente..."> -->
 					</div>
+					
 					
 					<div class="form-group col-md-6">
 						<label for="txtMedico"><strong>Médico</strong></label>
-						<input type="text" class="form-control" id="txtMedico" name="medico" placeholder="Informe o médico...">
+						<select class="custom-select" >
+						  <option selected > </option>
+						  	<option th:field="*{medico.id}"  th:each="medico : ${medicos}" th:value="${medico.id}" th:text="${medico.nome}" ></option>
+						</select>
 					</div>				
 				</div>
 				  
@@ -51,39 +42,31 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="txtDataConsulta"><strong>Data da consulta</strong></label>
-						<input type="date" class="form-control" id="txtDataConsulta" name= "dataConsulta" placeholder="dd/mm/aaaa">
+						<input type="date" class="form-control" id="txtDataConsulta" th:field="*{dataConsulta}" name= "dataConsulta" placeholder="dd/mm/aaaa">
 					</div>	
 					
 					<div class="form-group col-md-6">
 						<label for="txtValorConsulta"><strong>Valor</strong></label>
-						<input type="text" class="form-control" id="txtValorConsulta"  placeholder="Ex: R$ 200,00">
+						<input type="text" class="form-control" id="txtValorConsulta" th:field="*{valorConsulta}" placeholder="Ex: R$ 200,00">
 					</div>
 				</div>
 				
 				<div class="form-row">
-					<div class = "botoes">
-						<div class = "botoes-items">
-							<form action="">
-								<button type="submit" class="btn btn-secondary"><img src="./img/cancelar-2.svg" ></button>
-							</form>
-						</div>
-						
-						<div class = "botoes-items">
-							<form action="">
-								<button type="submit" class="btn btn-secondary"><img src="./img/editar.svg" ></button>
-							</form>
-						</div>
-						
-						<div class = "botoes-items">
-							<form action="">
-								<!--  cadastrar -->
-								<button type="submit" class="btn btn-secondary"><img src="./img/mais.svg" ></button>
-							</form>
-						</div>
+					<input type="text" class="form-control" id="inputId" th:field="*{id}" name="id" hidden="true" >
+					<input type="text" class="form-control" id="inputId" th:field="*{paciente.id}" name="paciente.id" hidden="true" >
+					<input type="text" class="form-control" id="inputId" th:field="*{medico.id}" name="medico.id" hidden="true" >
+				
+				
+				
+					<div class = "form-group col-md-12">
+						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar/Cadastrar</strong></button>
 					</div>
 				</div>
 			</form>
-		</div>
+<!-- 		</div> -->
+		
+				
+	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>	
 	</body>
 	
 </html>
