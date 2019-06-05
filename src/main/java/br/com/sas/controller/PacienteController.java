@@ -76,7 +76,7 @@ public class PacienteController {
 	// Método que irá carregar todos os atendentes, na tabela
 	@GetMapping("/consultar")
 	public ModelAndView findAll(Model model, @RequestParam(defaultValue="0") int page) {
-		ModelAndView mv = new ModelAndView("consultas/consultar-paciente");
+		ModelAndView mv = new ModelAndView("consultas/consultar-pacientes");
 		mv.addObject("listPacientes", pacienteService.findAll(PageRequest.of(page, 5)));
 		model.addAttribute("paginaAtual",page);
 		return mv;
