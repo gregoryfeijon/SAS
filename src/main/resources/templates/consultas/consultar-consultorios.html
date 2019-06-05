@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+		  
+	<head lang="pt-br" th:include="/fragments/head :: head">
+		<title>Consultar os consultórios </title>
+	</head>
+	
+	<body>
+		
+		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
+		
+<!-- <div class = "container" style = "width: 100vw;height: 100vh;">	 -->
+			<h3 id = "textoAlinha"><strong>Consultar os consultórios - SAS</strong></h3>
+			</br> </br>
+		
+		<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
+			
+		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
+			<div class="input-group-prepend">
+				<label><b>Pesquisar Por: </b></label>
+			</div>
+			
+					<!-- 	Combobox pesquisarPor-->
+			<select class="custom-select col-sm-2 col-md-2 col-lg-2" id="cmbPesquisarPor" name="pesquisarPor">
+				<option selected></option>
+				<option value="porMedico" id = "porNomeDoMedico">Nome do mÃ©dico</option>
+				<option value="porCRM" id = "porCRM">CRM</option>
+				<option value="porRG" id = "porRg">RG</option>
+			</select>
+		
+				<div class="form-group col-md-6">
+						<input type="text" class="form-control" id="txtNomeMedico" name="busca" placeholder="">
+				</div>
+		
+			<div class="input-group-btn " id="divBtnPesquisar">
+				<button class="btn btn-secondary " type="submit" id="bPesquisar">Pesquisar</button>
+			</div>
+
+		</div>
+		
+		<!-- ======================= -->
+
+		<table class="table  table-hover table-responsive container ">
+			<thead>
+				<tr>
+					<th scope="col"> <b> ID </b> </th>	
+					<th scope="col"> <b> Data Criação </b> </th>
+					<th scope="col"> <b> Nome </b> </th>	
+					<th scope="col"> <b> CNPJ </b> </th>		
+					<th scope="col"> <b> Nome Fantasia </b> </th>	
+					<th scope="col"> <b> Telefone </b> </th>	
+					<th scope="col"> <b> Celular </b> </th>	
+					
+					<th scope="col"> <b> Cidade </b> </th>	
+					<th scope="col"> <b> UF </b> </th>	
+					<th scope="col"> <b> Rua </b> </th>	
+					<th scope="col"> <b> Bairro </b> </th>	
+					<th scope="col"> <b> Número </b> </th>	
+					<th scope="col"> <b> CEP </b> </th>	
+					
+					<th scope="col"> <b> Editar </b> </th>	
+					<th scope="col"> <b> Deletar </b> </th>	
+					<th scope="col"> <b> Mais Um </b> </th>	
+				</tr>
+			</thead>
+					
+			<tbody>
+				<tr th:each="consultorio : ${listConsultorios}">
+					<th scope="row" th:text="${consultorio.id}"> 2</th>
+					<td scope="row" th:text="${#dates.format(consultorio.dataCriacao, 'dd-MM-yyyy')}"> 01/02/2019 </td>	
+					<td scope="row" th:text="${consultorio.nome}"> 12.000.021-90 </td>	
+					<td scope="row" th:text="${consultorio.cnpj}"> 123.321.901-99 </td>	
+					<td scope="row" th:text="${consultorio.nomeFantasia}" > Steve Jobs </td>	
+					<td scope="row" th:text="${consultorio.telefone}"> (00) 00000-0000 </td>	
+					<td scope="row" th:text="${consultorio.celular}"> (00) 0000-0000 </td>
+					
+					<td scope="row" th:text="${consultorio.enderecoConsultorio.cidade}"> Salto </td>	
+					<td scope="row" th:text="${consultorio.enderecoConsultorio.estado}"> SP </td>	
+					<td scope="row" th:text="${consultorio.enderecoConsultorio.rua}"> Austria </td>	
+					<td scope="row" th:text="${consultorio.enderecoConsultorio.bairro}"> Marilia </td>	
+					<td scope="row" th:text="${consultorio.enderecoConsultorio.numero}"> 1080 </td>	
+					<td scope="row" th:text="${consultorio.enderecoConsultorio.cep}"> 13323-000 </td>	
+								
+<!-- 	 				EDITAR -->
+	 				<td	scope="row">
+						<a th:href="${(#mvc.url('CC#edit').arg(0, consultorio.id)).build()}">
+							<button type="submit" class="btn btn-secondary ">
+								<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
+							</button>
+						</a>
+					</td>
+
+					<!-- DELETAR/INATIVAR -->
+					<td	scope="row">		
+						<form th:method="DELETE" th:action="${(#mvc.url('CC#delete').arg(0, consultorio.id)).build()}">
+							<button type="submit" class="btn btn-secondary" >
+								<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg" width="25px" height="25px"> 
+							</button>
+						</form>
+					</td>
+					
+					<!--  CADASTRAR/ MAIS UM -->
+					<td	scope="row">	
+						<a class="btn btn-secondary" th:href="@{/consultorio/cadastrarConsultorio}">
+							<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
+						</a>
+					</td>
+					
+				 </tr>
+			</tbody>
+			
+		<ul class="nav nav-pills ">
+			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listConsultorios.totalPages)}">
+			 	<a th:href="@{/consultorio/consultar/(page=${pg})}"  th:text="${pg} +1" class="nav-link"  
+			 		th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1
+			 	</a>
+			</li>	
+		</ul>
+		
+		</table>
+		
+		
+		<ul class="nav nav-pills ">
+			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listConsultorios.totalPages)}">
+			 	<a th:href="@{/consultorio/consultar/(page=${pg})}"  th:text="${pg} +1" class="nav-link"  
+			 		th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1
+			 	</a>
+			</li>	
+		</ul>
+
+
+	<!-- 	<br> <br>	 -->
+    	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
+	</body>
+</html>

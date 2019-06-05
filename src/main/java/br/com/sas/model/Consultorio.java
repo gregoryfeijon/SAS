@@ -11,9 +11,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.br.CNPJ;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Consultorio {
@@ -21,14 +24,16 @@ public class Consultorio {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@NotBlank
+	@NotBlank (message = "A razão social (nome), NÃO pode estar em branco")
 	private String nome;
 	
-	@CNPJ
+	@CNPJ (message = "CPNJ, inexistente, favor informe o corretamente! ")
 	private String cnpj;
 	
 	private String nomeFantasia;
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataCriacao;
 	
 	private String telefone;

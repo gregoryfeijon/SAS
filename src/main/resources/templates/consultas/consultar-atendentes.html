@@ -87,7 +87,7 @@
 					
 					<!--  CADASTRAR/ MAIS UM -->
 					<td	scope="row">	
-						<a class="btn btn-secondary" th:href="@{/atendente/cadastrarEditarAtendente}">
+						<a class="btn btn-secondary" th:href="@{/atendente/cadastrarAtendente}">
 							<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
 						</a>
 					</td>
@@ -96,7 +96,7 @@
 			</tbody>
 			
 		<ul class="nav nav-pills ">
-			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listAtendentes.totalPages-1)}">
+			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listAtendentes.totalPages)}">
 			 	<a th:href="@{/atendente/consultar/(page=${pg})}"  th:text="${pg} +1" class="nav-link"  
 			 		th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1
 			 	</a>
