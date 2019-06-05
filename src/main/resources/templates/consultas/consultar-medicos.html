@@ -1,98 +1,139 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-		  
-	<head lang="pt-br" th:include="/fragments/head :: head">
-		  
-		<title>Consultar MÈdicos</title>
-	</head>
-	<body>
-		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
-		
-		<div class = "container" style = "width: 100vw;height: 100vh;">	
-			<h3 id = "textoAlinha"><strong>Consultar os medicos - SAS</strong></h3>
-			</br> </br>
-		
-		
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head lang="pt-br" th:include="/fragments/head :: head">
+
+<title>Consultar M√©dicos</title>
+</head>
+<body>
+	<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
+
+	<div class="container" style="width: 100vw; height: 100vh;">
+		<h3 id="textoAlinha">
+			<strong>Consultar os m√©dicos - SAS</strong>
+		</h3>
+		</br>
+		</br>
+
+		<div lang="pt-br"
+			th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
+
 		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
 			<div class="input-group-prepend">
 				<label><b>Pesquisar Por: </b></label>
 			</div>
-			
-					<!-- 	Combobox pesquisarPor-->
-			<select class="custom-select col-sm-2 col-md-2 col-lg-2" id="cmbPesquisarPor" name="pesquisarPor">
+
+			<!-- 	Combobox pesquisarPor-->
+			<select class="custom-select col-sm-2 col-md-2 col-lg-2"
+				id="cmbPesquisarPor" name="pesquisarPor">
 				<option selected></option>
-				<option value="porMedico" id = "porNomeDoMedico">Nome do mÈdico</option>
-				<option value="porCRM" id = "porCRM">CRM</option>
-				<option value="porRG" id = "porRg">RG</option>
+				<option value="porMedico" id="porNomeDoMedico">Nome do
+					m√©dico</option>
+				<option value="porCRM" id="porCRM">CRM</option>
+				<option value="porRG" id="porRg">RG</option>
 			</select>
-		
-				<div class="form-group col-md-6">
-						<input type="text" class="form-control" id="txtNomeMedico" name="busca" placeholder="">
-				</div>
-		
+
+			<div class="form-group col-md-6">
+				<input type="text" class="form-control" id="txtNomeMedico"
+					name="busca" placeholder="">
+			</div>
+
 			<div class="input-group-btn " id="divBtnPesquisar">
 				<button class="btn btn-secondary " type="submit" id="bPesquisar">Pesquisar</button>
 				<a href="menu.html" class="btn btn-secondary">Voltar ao menu</a>
 			</div>
 
 		</div>
-		
+
 		<!-- ======================= -->
-		<form action="#" method="post">
-			<div  class="container">  <!-- Container -->
-				<!-- CabeÁalho -->
-				<div class="row"> <!-- Linha -->
-				
-					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Data de Cad. </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Nome </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> CRM </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Telefone </b> </div>	
-					<div  class="col-sm-1 col-md-1 col-lg-1"> <b> Celular </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> Especialidade </b> </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2"> <b> AÁıes </b> </div>	
-					
-											<!-- <div  class="col-sm-4 col-md-4 col-lg-4">	-->
-				</div>
-					
-				<!-- <div  class="col-xs-9"> --> <!-- Coluna  -->
-				<div class="row" th:remove="${#arrays.isEmpty(medico)} ? all : 'all-but-first'">  
-					<div  class="col-sm-1 col-md-1 col-lg-1" th:text="${medico.dataCadastro}"> 20/01/2018 </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.nome}"> Jo„o das  neves </div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.crm}"> 123.242.321-88</div>	
-					<div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.telefone}"> (00) 00000-0000 </div>	
-				    <div  class="col-sm-1 col-md-1 col-lg-1" th:text="${medico.celular}"> (00) 0000-0000 </div>	
-				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.especialidade}"> Oftamologista </div>	
-				    <div  class="col-sm-2 col-md-2 col-lg-2" th:text="${medico.rg}"> 
-						
-						<form action="">
+
+		<table class="table  table-hover table-responsive container ">
+			<thead>
+				<tr>
+					<th scope="col"><b> ID </b></th>
+					<th scope="col"><b> Data Nasc. </b></th>
+					<th scope="col"><b> RG </b></th>
+					<th scope="col"><b> CPF </b></th>
+					<th scope="col"><b> Nome </b></th>
+					<th scope="col"><b> Telefone </b></th>
+					<th scope="col"><b> Celular </b></th>
+					<th scope="col"><b> CRM </b></th>
+					<th scope="col"><b> Especialidade </b></th>
+					<th scope="col"><b> Editar </b></th>
+					<th scope="col"><b> Deletar </b></th>
+					<th scope="col"><b> Mais Um </b></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="medico : ${listMedicos}">
+					<th scope="row" th:text="${medico.id}">2</th>
+					<td scope="row"
+						th:text="${#dates.format(medico.dataNascimento, 'dd-MM-yyyy')}">
+						20/01/2018</td>
+					<td scope="row" th:text="${medico.rg}">12.000.021-90</td>
+					<td scope="row" th:text="${medico.cpf}">123.321.901-99</td>
+					<td scope="row" th:text="${medico.nome}">Jo√£o das neves</td>
+					<td scope="row" th:text="${medico.telefone}">(00) 00000-0000</td>
+					<td scope="row" th:text="${medico.celular}">(00) 0000-0000</td>
+					<td scope="row" th:text="${medico.crm}">123.242.321-88</td>
+					<td scope="row" th:text="${medico.especialidade}">
+						Oftalmologista</td>
+
+					<!-- 	 				EDITAR -->
+					<td scope="row"><a
+						th:href="${(#mvc.url('MC#edit').arg(0, medico.id)).build()}">
 							<button type="submit" class="btn btn-secondary ">
-								<img src="./img/editar.svg" width="25px" height="25px"> 
+								<img th:src="@{/img/editar.svg}" src="./img/editar.svg"
+									width="25px" height="25px">
 							</button>
-						</form>	
-						
-						<!-- INATIVAR -->
-						<form action="">
-							<button type="submit" class="btn btn-secondary ">
-								<img src="./img/cancelar-2.svg" width="25px" height="25px"> 
+					</a></td>
+
+					<!-- DELETAR/INATIVAR -->
+					<td scope="row">
+						<form th:method="DELETE"
+							th:action="${(#mvc.url('MC#delete').arg(0, medico.id)).build()}">
+							<button type="submit" class="btn btn-secondary">
+								<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg"
+									width="25px" height="25px">
 							</button>
 						</form>
-						
-						<form action="">
-							<!--  cadastrar -->
-							<button type="submit" class="btn btn-secondary "> 
-								<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
-							</button>
-						</form>
-			
-					</div>	
-				
-				</div>                           
-			</div>
-		</form>
-		</div>
-		
-		<!-- 	<br> <br>	 -->
-    <div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
-	</body>
+					</td>
+
+					<!--  CADASTRAR/ MAIS UM -->
+					<td scope="row"><a class="btn btn-secondary"
+						th:href="@{/atendente/cadastrarEditarAtendente}"> <img
+							th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px"
+							height="25px">
+					</a></td>
+
+				</tr>
+			</tbody>
+
+			<ul class="nav nav-pills ">
+				<li class="nav-item"
+					th:each="pg : ${#numbers.sequence(0,listMedicos.totalPages-1)}">
+					<a th:href="@{/medico/consultar/(page=${pg})}" th:text="${pg} +1"
+					class="nav-link"
+					th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1 </a>
+				</li>
+			</ul>
+
+		</table>
+
+
+		<ul class="nav nav-pills ">
+			<li class="nav-item"
+				th:each="pg : ${#numbers.sequence(0,listMedicos.totalPages)}">
+				<a th:href="@{/medico/consultar/(page=${pg})}" th:text="${pg} +1"
+				class="nav-link"
+				th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1 </a>
+			</li>
+		</ul>
+	</div>
+
+	<!-- 	<br> <br>	 -->
+	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
+</body>
 </html>
