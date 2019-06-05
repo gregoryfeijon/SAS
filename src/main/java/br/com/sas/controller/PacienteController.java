@@ -65,7 +65,7 @@ public class PacienteController {
 	
 	// Método que irá carregar na tela de cadastro, os valores cadastrados de um paciente (para poder editar)
 	@GetMapping("/editar/{id}")
-	public ModelAndView edit(@PathVariable("id") long id) {
+	public ModelAndView edit(@PathVariable long id) {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-paciente");
 		Paciente paciente = pacienteService.findOne(id).get();
 		mv.addObject("paciente",paciente);
