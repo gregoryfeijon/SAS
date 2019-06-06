@@ -31,10 +31,10 @@ public class Agendamento {
 	
 	@ManyToOne(cascade = {CascadeType.DETACH})
 	@NotNull(message = "É necessário, que tenha um MÉDICO, no agendamento")
+	
 	private Medico medico = new Medico();
 	
 	@ManyToOne(cascade = {CascadeType.DETACH})
-	@NotNull(message = "É necessário, que tenha um PACIENTE, no agendamento ")
 	private Paciente paciente = new Paciente();
 	
 //	On
