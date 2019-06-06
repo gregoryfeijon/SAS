@@ -21,7 +21,7 @@ public class Agendamento {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Por favor, informe a DATA, da do agendamneto da consulta")
 	private Date dataConsulta;
