@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,7 +21,7 @@ public class Agendamento {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "Por favor, informe a DATA, da do agendamneto da consulta")
 	private Date dataConsulta;
@@ -29,12 +30,12 @@ public class Agendamento {
 	private Double valorConsulta;
 	
 	@ManyToOne(cascade = {CascadeType.DETACH})
-//	@NotNull(message = "É necessário, que tenha um MÉDICO, no agendamento")
-	private Medico medico;
+	@NotNull(message = "É necessário, que tenha um MÉDICO, no agendamento")
+	
+	private Medico medico = new Medico();
 	
 	@ManyToOne(cascade = {CascadeType.DETACH})
-//	@NotNull(message = "É necessário, que tenha um PACIENTE, no agendamento")
-	private Paciente paciente;
+	private Paciente paciente = new Paciente();
 	
 //	On
 //	private Atendimento atendimento;

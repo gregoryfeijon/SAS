@@ -1,5 +1,7 @@
 package br.com.sas.controller;
 
+import java.util.Arrays;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sas.enums.Estado;
 import br.com.sas.model.Medico;
 import br.com.sas.service.EnderecoService;
 import br.com.sas.service.MedicoService;
-import br.com.sas.util.MetodosAuxiliares;
 
 @Controller
 @RequestMapping("/medico")
@@ -36,7 +38,7 @@ public class MedicoController {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-medico");
 		Medico medico = new Medico();
 		mv.addObject("medico", medico);
-		mv.addObject("estados", MetodosAuxiliares.getEstados());
+		mv.addObject("estados", Arrays.asList(Estado.values()));
 
 		return mv;
 	}
@@ -45,7 +47,7 @@ public class MedicoController {
 	public ModelAndView save(@Valid Medico medico, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			ModelAndView mv = new ModelAndView("cadastros/cadastro-medico");
-			mv.addObject("estados", MetodosAuxiliares.getEstados());
+			mv.addObject("estados", Arrays.asList(Estado.values()));
 			mv.addObject("medico", medico);
 			mv.addObject("mensagemErro", medicoService.getMensagensErros(result));
 
@@ -63,8 +65,11 @@ public class MedicoController {
 	@GetMapping("/editar/{id}")
 	public ModelAndView edit(@PathVariable long id) {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-medico");
-		mv.addObject("medico", MetodosAuxiliares.verificaPresencaObjeto(medicoService.findOne(id)));
-		mv.addObject("estados", MetodosAuxiliares.getEstados());
+		Medico[] medico = new Medico[1];
+		medicoService.findOne(id).ifPresent(m -> medico[0] = m);
+		//por mensagem de erro caso médico não exista
+		mv.addObject("medico", medico[0]);
+		mv.addObject("estados", Arrays.asList(Estado.values()));
 
 		return mv;
 	}
@@ -80,12 +85,13 @@ public class MedicoController {
 
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable long id, RedirectAttributes attributes) {
-		Medico medico = (Medico) MetodosAuxiliares.verificaPresencaObjeto(medicoService.findOne(id));
-		if (medico != null) {
-			medicoService.delete(medico);
+		Medico[] medico = new Medico[1];
+		medicoService.findOne(id).ifPresent(m -> medico[0] = m);
+		if (medico[0] != null) {
+			medicoService.delete(medico[0]);
 			attributes.addFlashAttribute("mensagemSucesso", "Médico deletado com sucesso!");
 		} else {
-			attributes.addFlashAttribute("mensagemSucesso", "Médico especificado não existe!");
+			attributes.addFlashAttribute("mensagemErro", "Médico especificado não existe!");
 		}
 		return new ModelAndView("redirect:/medico/consultar");
 	}

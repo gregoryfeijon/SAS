@@ -6,4 +6,5 @@ import br.com.sas.model.Medico;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long>{
 
+	public Medico findByNome (String nome);
 }

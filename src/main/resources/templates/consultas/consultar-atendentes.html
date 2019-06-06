@@ -69,7 +69,7 @@
 								
 <!-- 	 				EDITAR -->
 	 				<td	scope="row">
-						<a th:href="${(#mvc.url('AC#edit').arg(0, atendente.id)).build()}">
+						<a th:href="@{'/atendente/editar/' + ${atendente.id}}">
 							<button type="submit" class="btn btn-secondary ">
 								<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
 							</button>
@@ -78,7 +78,7 @@
 
 					<!-- DELETAR/INATIVAR -->
 					<td	scope="row">		
-						<form th:method="DELETE" th:action="${(#mvc.url('AC#delete').arg(0, atendente.id)).build()}">
+						<form th:method="DELETE" th:action="@{'/atendente/delete/' + ${atendente.id}}">
 							<button type="submit" class="btn btn-secondary" >
 								<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg" width="25px" height="25px"> 
 							</button>

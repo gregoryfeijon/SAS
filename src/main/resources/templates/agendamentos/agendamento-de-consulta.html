@@ -21,7 +21,7 @@
 				<!-- Provavelmente no médico e no paciente será uma lista, carregada no combobox, ou alguma, que as pessoas informadas sejam as msms que tem no BD -->
 					<div class="form-group col-md-6">
 						<label for="txtNomePaciente"><strong>Nome do paciente</strong></label>
-						<select class="custom-select" >
+						<select class="custom-select" name="paciente.id">
 						  <option selected > </option>
 						  	<option th:field="*{paciente.id}"  th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}" ></option>
 						</select>
@@ -31,7 +31,7 @@
 					
 					<div class="form-group col-md-6">
 						<label for="txtMedico"><strong>Médico</strong></label>
-						<select class="custom-select" >
+						<select class="custom-select" name="medico.id" >
 						  <option selected > </option>
 						  	<option th:field="*{medico.id}"  th:each="medico : ${medicos}" th:value="${medico.id}" th:text="${medico.nome}" ></option>
 						</select>
@@ -53,10 +53,6 @@
 				
 				<div class="form-row">
 					<input type="text" class="form-control" id="inputId" th:field="*{id}" name="id" hidden="true" >
-<!-- 					<input type="text" class="form-control" id="inputId" th:field="*{paciente.id}" name="paciente.id" hidden="true" > -->
-<!-- 					<input type="text" class="form-control" id="inputId" th:field="*{medico.id}" name="medico.id" hidden="true" > -->
-				
-				
 				
 					<div class = "form-group col-md-12">
 						<button type="submit" class="btn btn-secondary col-md-12"><strong>Alterar/Cadastrar</strong></button>
