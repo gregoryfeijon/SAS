@@ -13,12 +13,12 @@
 		<h3 id="textoAlinha">
 			<strong>Consultar os médicos - SAS</strong>
 		</h3>
-		</br>
-		</br>
+		</br></br>
 
 		<div lang="pt-br"
 			th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
 
+	<form action="/medico/consultar/nome " method="POST" >
 		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
 			<div class="input-group-prepend">
 				<label><b>Pesquisar Por: </b></label>
@@ -28,23 +28,22 @@
 			<select class="custom-select col-sm-2 col-md-2 col-lg-2"
 				id="cmbPesquisarPor" name="pesquisarPor">
 				<option selected></option>
-				<option value="porMedico" id="porNomeDoMedico">Nome do
-					médico</option>
+				<option value="porMedico" id="porNomeDoMedico">Nome do médico</option>
 				<option value="porCRM" id="porCRM">CRM</option>
 				<option value="porRG" id="porRg">RG</option>
 			</select>
 
 			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="txtNomeMedico"
-					name="busca" placeholder="">
+				<input type="text" class="form-control" id="inputMedico"
+					name="nomeMedico" placeholder="">
 			</div>
 
 			<div class="input-group-btn " id="divBtnPesquisar">
-				<button class="btn btn-secondary " type="submit" id="bPesquisar">Pesquisar</button>
+				<button class="btn btn-secondary " type="submit">Pesquisar</button>
 				<a href="../home" class="btn btn-secondary">Voltar ao menu</a>
 			</div>
-
 		</div>
+		</form>
 
 		<!-- ======================= -->
 
@@ -69,31 +68,28 @@
 			<tbody>
 				<tr th:each="medico : ${listMedicos}">
 					<th scope="row" th:text="${medico.id}">2</th>
-					<td scope="row"
-						th:text="${#dates.format(medico.dataNascimento, 'dd-MM-yyyy')}">
-						20/01/2018</td>
+					<td scope="row" th:text="${#dates.format(medico.dataNascimento, 'dd-MM-yyyy')}">20/01/2018</td>
 					<td scope="row" th:text="${medico.rg}">12.000.021-90</td>
 					<td scope="row" th:text="${medico.cpf}">123.321.901-99</td>
 					<td scope="row" th:text="${medico.nome}">João das neves</td>
 					<td scope="row" th:text="${medico.telefone}">(00) 00000-0000</td>
 					<td scope="row" th:text="${medico.celular}">(00) 0000-0000</td>
 					<td scope="row" th:text="${medico.crm}">123.242.321-88</td>
-					<td scope="row" th:text="${medico.especialidade}">
-						Oftalmologista</td>
+					<td scope="row" th:text="${medico.especialidade}">Oftalmologista</td>
 
 					<!-- 	 				EDITAR -->
-					<td scope="row"><a
-						th:href="${(#mvc.url('MC#edit').arg(0, medico.id)).build()}">
+					<td scope="row">
+						<a th:href="${(#mvc.url('MC#edit').arg(0, medico.id)).build()}">
 							<button type="submit" class="btn btn-secondary ">
 								<img th:src="@{/img/editar.svg}" src="./img/editar.svg"
 									width="25px" height="25px">
 							</button>
-					</a></td>
+						</a>
+					</td>
 
 					<!-- DELETAR/INATIVAR -->
 					<td scope="row">
-						<form th:method="DELETE"
-							th:action="${(#mvc.url('MC#delete').arg(0, medico.id)).build()}">
+						<form th:method="DELETE" th:action="${(#mvc.url('MC#delete').arg(0, medico.id)).build()}">
 							<button type="submit" class="btn btn-secondary">
 								<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg"
 									width="25px" height="25px">
@@ -102,20 +98,18 @@
 					</td>
 
 					<!--  CADASTRAR/ MAIS UM -->
-					<td scope="row"><a class="btn btn-secondary"
-						th:href="@{/medico/cadastrarMedico}"> <img
-							th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px"
-							height="25px">
-					</a></td>
+					<td scope="row">
+						<a class="btn btn-secondary"th:href="@{/medico/cadastrarMedico}"> 
+							<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px">
+						</a>
+					</td>
 
 				</tr>
 			</tbody>
 
 			<ul class="nav nav-pills ">
-				<li class="nav-item"
-					th:each="pg : ${#numbers.sequence(0,listMedicos.totalPages-1)}">
-					<a th:href="@{/medico/consultar/(page=${pg})}" th:text="${pg} +1"
-					class="nav-link"
+				<li class="nav-item" th:each="pg : ${#numbers.sequence(0,listMedicos.totalPages-1)}">
+					<a th:href="@{/medico/consultar/(page=${pg})}" th:text="${pg} +1" class="nav-link"
 					th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1 </a>
 				</li>
 			</ul>
@@ -124,10 +118,8 @@
 
 
 		<ul class="nav nav-pills ">
-			<li class="nav-item"
-				th:each="pg : ${#numbers.sequence(0,listMedicos.totalPages)}">
-				<a th:href="@{/medico/consultar/(page=${pg})}" th:text="${pg} +1"
-				class="nav-link"
+			<li class="nav-item" th:each="pg : ${#numbers.sequence(0,listMedicos.totalPages)}">
+				<a th:href="@{/medico/consultar/(page=${pg})}" th:text="${pg} +1" class="nav-link"
 				th:classappend="${paginaAtual} == ${pg} ? 'active': '' ">1 </a>
 			</li>
 		</ul>

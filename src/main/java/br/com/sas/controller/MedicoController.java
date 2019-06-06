@@ -83,6 +83,14 @@ public class MedicoController {
 		return mv;
 	}
 
+	@PostMapping("/consultar/nome")
+	public ModelAndView findByNome(@RequestParam("nomeMedico") String nomeMedico, Model model, @RequestParam(defaultValue = "0") int page) {
+		ModelAndView mv = new ModelAndView("consultas/consultar-medicos");
+		mv.addObject("listMedicos", medicoService.findByNome(PageRequest.of(page, 5), nomeMedico));
+		model.addAttribute("paginaAtual", page);
+		return mv;
+	}
+	
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable long id, RedirectAttributes attributes) {
 		Medico[] medico = new Medico[1];

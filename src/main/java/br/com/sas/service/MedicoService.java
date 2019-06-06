@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -32,6 +33,10 @@ public class MedicoService {
 		return repository.findById(id);
 	}
 
+	public Page<Medico> findByNome(Pageable pageable, String nome) {
+		return repository.findMedicoByNome(pageable, nome);
+	}
+
 	public Medico save(Medico medico) {
 		return repository.saveAndFlush(medico);
 	}
@@ -39,7 +44,7 @@ public class MedicoService {
 	public void deleteById(Long id) {
 		repository.deleteById(id);
 	}
-	
+
 	public void delete(Medico medico) {
 		repository.delete(medico);
 	}
