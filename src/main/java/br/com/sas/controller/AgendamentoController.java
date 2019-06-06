@@ -1,7 +1,5 @@
 package br.com.sas.controller;
 
-import java.util.Arrays;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sas.enums.Estado;
 import br.com.sas.model.Agendamento;
-import br.com.sas.model.Paciente;
 import br.com.sas.service.AgendamentoService;
 import br.com.sas.service.MedicoService;
 import br.com.sas.service.PacienteService;
@@ -53,33 +49,20 @@ public class AgendamentoController {
 	// Método que serve para salvar um cadastro e/ou editar
 	@PostMapping("/cadastrarEditarAgendamento")
 	public ModelAndView save(@Valid Agendamento agendamento, BindingResult result, RedirectAttributes attributes) {
-//		agendamento.getPaciente().setId((pacienteService.findOne(agendamento.getPaciente().getId()).get().getId()));
-//		agendamento.getMedico().setId((medicoService.findOne(agendamento.getMedico().getId()).get().getId()));
-		
-//		agendamento.setPaciente(pacienteService.findOne(agendamento.getPaciente().getId()).get());
-//		agendamento.setMedico(medicoService.findOne(agendamento.getMedico().getId()).get());
-		
-//		agendamento.getPaciente().getId()).get();
-		
-//		System.err.println("ID PACIENTE: " +pacienteService.findOne(agendamento.getPaciente().getId()).get().getId());
-		
+		ModelAndView mv = new ModelAndView("agendamentos/agendamento-de-consulta");
 		if (result.hasErrors()) {
-			ModelAndView mv = new ModelAndView("agendamentos/agendamento-de-consulta");
+//			ModelAndView mv = new ModelAndView("agendamentos/agendamento-de-consulta");
 			mv.addObject("pacientes", pacienteService.findAll());
 			mv.addObject("medicos", medicoService.findAll());
 			// Passando o mesmo obj recebido, para manter os dados informados, no formulario
 			mv.addObject("agendamento", agendamento);
 			mv.addObject("mensagemErro", agendamentoService.getMensagensErros(result));
-
 	
-			
 			return mv;
-		}
-		ModelAndView mv = new ModelAndView("redirect:/agendamento/cadastrarAgendamento");
-//		enderecoService.save(agendamento.getEndereco());
+		} 
+		mv.setViewName("redirect:/agendamento/cadastrarAgendamento");
 		agendamentoService.save(agendamento);
 		attributes.addFlashAttribute("mensagemSucesso", "Agendamento alterado/cadastrado com sucesso!");
-
 		return mv;
 	}
 
