@@ -19,6 +19,14 @@ function apenasNumerosOuX(e) {
 	}
 }
 
+function apenasNumerosComVirgula(e) {
+	var unicode = e.charCode ? e.charCode : e.keyCode
+	if (unicode != 8 && (unicode != 44 || unicode != 46)) {
+		if (unicode < 48 || unicode > 57)
+			return false
+	}
+}
+
 function apenasNumeros(e) {
 	var unicode = e.charCode ? e.charCode : e.keyCode
 	if (unicode != 8) { // se a key não for o backspace

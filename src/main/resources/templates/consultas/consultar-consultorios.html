@@ -10,7 +10,7 @@
 		
 		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 		
-<!-- <div class = "container" style = "width: 100vw;height: 100vh;">	 -->
+	<div class = "container" style = "width: 100vw;height: 100vh;">
 			<h3 id = "textoAlinha"><strong>Consultar os consultórios - SAS</strong></h3>
 			</br> </br>
 		
@@ -24,12 +24,12 @@
 					<!-- 	Combobox pesquisarPor-->
 			<select class="custom-select col-sm-2 col-md-2 col-lg-2" id="cmbPesquisarPor" name="pesquisarPor">
 				<option selected></option>
-				<option value="porMedico" id = "porNomeDoMedico">Nome do mÃ©dico</option>
+				<option value="porMedico" id = "porNomeDoMedico">Nome do médico</option>
 				<option value="porCRM" id = "porCRM">CRM</option>
 				<option value="porRG" id = "porRg">RG</option>
 			</select>
 		
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-8">
 						<input type="text" class="form-control" id="txtNomeMedico" name="busca" placeholder="">
 				</div>
 		
@@ -129,7 +129,7 @@
 			</li>	
 		</ul>
 
-
+	</div>
 	<!-- 	<br> <br>	 -->
     	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
 	</body>

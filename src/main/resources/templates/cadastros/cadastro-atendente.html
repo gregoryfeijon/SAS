@@ -21,7 +21,7 @@
 				
 					<div class="form-group col-md-4">
 						<label for="nomeAtendente"><strong>Nome Completo</strong></label>
-						<input type="text" class="form-control" id="inputAtendente" th:field="*{nome}" name="nome" placeholder="Insira o nome da atendente...">
+						<input type="text" class="form-control validaLetras" id="inputAtendente" th:field="*{nome}" name="nome" placeholder="Insira o nome da atendente...">
 					</div>
 					
 					<div class="form-group col-md-2">
@@ -31,24 +31,24 @@
 					
 					<div class="form-group col-md-2">
 						<label for="inputTelefone"><strong>Telefone</strong></label>
-						<input type="number" class="form-control" id="inputTelefone" th:field="*{telefone}" name="telefone" placeholder="(XX) XXXX-XXXX">
+						<input type="number" class="form-control" id="inputTelefone" th:field="*{telefone}" name="telefone" placeholder="(XX) XXXX-XXXX" onkeypress="return apenasNumeros(event)">
 					</div>
 					
 					<div class="form-group col-md-2">
 						<label for="inputCelular"><strong>Celular</strong></label>
-						<input type="number" class="form-control" id="inputCelular" th:field="*{celular}" name="celular" placeholder="(XX) YXXXX-XXXX">
+						<input type="number" class="form-control" id="inputCelular" th:field="*{celular}" name="celular" placeholder="(XX) YXXXX-XXXX" onkeypress="return apenasNumeros(event)">
 					</div>
 					
 					<!-- A senha de 1º acesso será criada com base em um padrão e posteriormente o usuário poderá mudá-la -->
 					<div class="form-group col-md-2">
 						<label for="inputCEP"><strong>CEP</strong></label>
-						<input type="text" class="form-control" id="inputCEP" th:field="*{endereco.cep}" name="endereco.cep" placeholder="00000-000">
+						<input type="text" class="form-control" id="inputCEP" th:field="*{endereco.cep}" name="endereco.cep" placeholder="00000-000" onkeypress="return apenasNumeros(event)">
 					</div>
 					
 					<!-- Possivelmente carregue uma lista de cidade de acordo com estado e vire combobox?-->
 					<div class="form-group col-md-3">
 						<label for="inputCidade"><strong>Cidade</strong></label>
-						<input type="text" class="form-control" id="inputCidade" th:field="*{endereco.cidade}" name="endereco.cidade" placeholder="Ex: Salto">
+						<input type="text" class="form-control validaLetras" id="inputCidade" th:field="*{endereco.cidade}" name="endereco.cidade" placeholder="Ex: Salto" maxlength="28">
 					</div>
 					
 					<!-- Possivelmente combobox com estados brasileiros-->
@@ -62,17 +62,17 @@
 					
 					<div class="form-group col-md-3">
 						<label for="inputRua"><strong>Rua</strong></label>
-						<input type="text" class="form-control" id="inputRua" th:field="*{endereco.rua}" name= "endereco.rua" placeholder="Rua dos corumbatás">
+						<input type="text" class="form-control validaLetras" id="inputRua" th:field="*{endereco.rua}" name= "endereco.rua" placeholder="Rua dos corumbatás">
 					</div>
 					
 					<div class="form-group col-md-3">
 						<label for="inputBairro"><strong>Bairro</strong></label>
-						<input type="text" class="form-control" id="inputBairro" th:field="*{endereco.bairro}" name = "endereco.bairro" placeholder="Salto de São José">
+						<input type="text" class="form-control validaLetras" id="inputBairro" th:field="*{endereco.bairro}" name = "endereco.bairro" placeholder="Salto de São José">
 					</div>
 					
 					<div class="form-group col-md-2">
 						<label for="inputNumero"><strong>*Nº</strong></label>
-						<input type="number" class="form-control" id="inputNumero" th:field="*{endereco.numero}" name="endereco.numero" placeholder="Nº" min= "0" style = "inline">
+						<input type="number" class="form-control" id="inputNumero" th:field="*{endereco.numero}" name="endereco.numero" placeholder="Nº" min= "0" style = "inline"  onkeypress="return apenasNumeros(event)">
 					</div>
 				
 				
@@ -81,12 +81,12 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="inputCPF"><strong>CPF</strong></label>
-						<input type="text" class="form-control" id="inputCPF" th:field="*{cpf}" name="cpf" placeholder="000.000.000-00">
+						<input type="text" class="form-control" id="inputCPF" th:field="*{cpf}" name="cpf" placeholder="000.000.000-00" onkeypress="return apenasNumeros(event)">
 					</div>
 					
 					<div class="form-group col-md-6">
 						<label for="inputRG"><strong>RG</strong></label>
-						<input type="text" class="form-control" id="inputRG" th:field="*{rg}" name="" placeholder="00.000.000-0">
+						<input type="text" class="form-control" id="inputRG" th:field="*{rg}" name="" placeholder="00.000.000-0" onkeypress="return apenasNumerosOuX(event)">
 					</div>
 					
 				</div>

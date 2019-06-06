@@ -33,13 +33,13 @@
 				<div class="form-group col-md-2">
 					<label for="inputCPF"><strong>CPF</strong></label>
 					<input type="text" class="form-control" id="inputCPF" th:field="*{cpf}"
-						name="cpf" placeholder="000.000.000-00" onkeypress="return apenasNumerosOuX(event)" maxlength="11">
+						name="cpf" placeholder="000.000.000-00" onkeypress="return apenasNumeros(event)" maxlength="11">
 				</div>
 
 				<div class="form-group col-md-2">
 					<label for="inputRG"><strong>RG</strong></label>
 					<input type="text" class="form-control" id="inputRG" th:field="*{rg}" name=""
-						placeholder="00.000.000-0" onkeypress="return apenasNumeros(event)" maxlength="9">
+						placeholder="00.000.000-0" onkeypress="return apenasNumerosOuX(event)"  maxlength="9">
 				</div>
 
 
@@ -125,7 +125,7 @@
 					<label for="inputNumero"><strong>Nº</strong></label> 
 					<input type="number" class="form-control" id="inputNumero"
 						th:field="*{endereco.numero}" name="endereco.numero"
-						placeholder="Nº" min="0" onkeypress="return apenasNumeros(event)" >
+						placeholder="Nº" min="0" style="inline" onkeypress="return apenasNumeros(event)" >
 				</div>
 			</div>
 
