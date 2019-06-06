@@ -16,29 +16,26 @@
 		
 		<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
 			
+			
+<!-- 	<form th:action="@{'/atendente/consultar/' + ${listAtendentes.nome}}" th:object="${atendente}" method="GET"  > -->
+	<form action="/atendente/consultar/nome " method="POST" >
 		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
+		
 			<div class="input-group-prepend">
 				<label><b>Pesquisar Por: </b></label>
 			</div>
 			
-					<!-- 	Combobox pesquisarPor-->
-			<select class="custom-select col-sm-2 col-md-2 col-lg-2" id="cmbPesquisarPor" name="pesquisarPor">
-				<option selected></option>
-				<option value="porMedico" id = "porNomeDoMedico">Nome do médico</option>
-				<option value="porCRM" id = "porCRM">CRM</option>
-				<option value="porRG" id = "porRg">RG</option>
-			</select>
-		
-				<div class="form-group col-md-6">
-						<input type="text" class="form-control" id="txtNomeMedico" name="busca" placeholder="">
-				</div>
-		
-			<div class="input-group-btn " id="divBtnPesquisar">
-				<button class="btn btn-secondary " type="submit" id="bPesquisar">Pesquisar</button>
+			<div class="form-group col-md-6">
+				<input type="text" class="form-control" id="inputNome" name="nomeAtendente" placeholder="informe o nome do atendente...">
 			</div>
-
-		</div>
+				
+			<div class="input-group-btn " id="divBtnPesquisar">
+				<button type="submit" class="btn btn-secondary "> Pesquisar	</button>
+			</div> 
 		
+		</div>
+	</form>
+	
 		<!-- ======================= -->
 
 		<table class="table  table-hover table-responsive container ">

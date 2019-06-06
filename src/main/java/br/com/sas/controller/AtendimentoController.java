@@ -17,7 +17,7 @@ public class AtendimentoController {
 	@Autowired
 	private AlergiaService alergiaService;
 	
-	@GetMap
+//	@GetMap
 	
 	
 	

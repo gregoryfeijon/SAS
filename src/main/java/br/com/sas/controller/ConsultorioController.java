@@ -1,5 +1,7 @@
 package br.com.sas.controller;
 
+import java.util.Arrays;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sas.enums.Estado;
 import br.com.sas.model.Consultorio;
 import br.com.sas.service.ConsultorioService;
 import br.com.sas.service.EnderecoService;
-import br.com.sas.util.MetodosAuxiliares;
 	
 @Controller
 @RequestMapping("/consultorio")
@@ -36,7 +38,7 @@ public class ConsultorioController {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-consultorio");
 		Consultorio consultorio = new Consultorio();
 		mv.addObject("consultorio", consultorio);
-		mv.addObject("estados", MetodosAuxiliares.getEstados());
+		mv.addObject("estados", Arrays.asList(Estado.values()));
 
 		return mv;
 	}
@@ -46,7 +48,7 @@ public class ConsultorioController {
 	public ModelAndView save(@Valid Consultorio consultorio, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			ModelAndView mv = new ModelAndView("cadastros/cadastro-consultorio");
-			mv.addObject("estados", MetodosAuxiliares.getEstados());
+			mv.addObject("estados", Arrays.asList(Estado.values()));
 			// Passando o mesmo obj recebido, para manter os dados informados, no formulario
 			mv.addObject("consultorio", consultorio);
 			mv.addObject("mensagemErro", consultorioService.getMensagensErros(result));
@@ -67,7 +69,7 @@ public class ConsultorioController {
 		ModelAndView mv = new ModelAndView("cadastros/cadastro-consultorio");
 		Consultorio consultorio = consultorioService.findOne(id).get();
 		mv.addObject("consultorio", consultorio);
-		mv.addObject("estados", MetodosAuxiliares.getEstados());
+		mv.addObject("estados", Arrays.asList(Estado.values()));
 		return mv;
 	}
 

@@ -81,6 +81,15 @@ public class AtendenteController {
 		model.addAttribute("paginaAtual", page);
 		return mv;
 	}
+	
+	@PostMapping("/consultar/nome")
+	public ModelAndView findByNome(@RequestParam("nomeAtendente") String nomeAtendente, Model model, @RequestParam(defaultValue = "0") int page) {
+		ModelAndView mv = new ModelAndView("consultas/consultar-atendentes");
+		mv.addObject("listAtendentes", atendenteService.findByNome(PageRequest.of(page, 5), nomeAtendente));
+		model.addAttribute("paginaAtual", page);
+		return mv;
+	}
+
 
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") long id, RedirectAttributes attributes) {
