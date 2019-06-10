@@ -55,7 +55,7 @@
 					<div class="form-group col-md-1">
 						<label for="inputEstado"><strong>Estado</strong></label>
 						<select class="custom-select" >
-						  <option selected > </option>
+						  <option selected id="opEstado"> </option>
 						  	<option th:field="*{endereco.estado}"  th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}" ></option>
 						</select>
 					</div>
