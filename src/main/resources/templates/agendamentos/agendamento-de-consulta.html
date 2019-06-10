@@ -47,7 +47,7 @@
 					
 					<div class="form-group col-md-6">
 						<label for="txtValorConsulta"><strong>Valor</strong></label>
-						<input type="text" class="form-control" id="txtValorConsulta" th:field="*{valorConsulta}" placeholder="Ex: R$ 200,00">
+						<input type="text" class="form-control" id="txtValorConsulta" th:field="*{valorConsulta}" placeholder="Ex: R$ 200,00" onkeypress="return apenasNumerosComVirgula(event)">
 					</div>
 				</div>
 				

@@ -10,12 +10,11 @@
 		
 		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 		
-<!-- <div class = "container" style = "width: 100vw;height: 100vh;">	 -->
+	<div class = "container" style = "width: 100vw;height: 100vh;">
 			<h3 id = "textoAlinha"><strong>Consultar os atendentes - SAS</strong></h3>
 			</br> </br>
 		
-		<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
-			
+	<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
 			
 <!-- 	<form th:action="@{'/atendente/consultar/' + ${listAtendentes.nome}}" th:object="${atendente}" method="GET"  > -->
 	<form action="/atendente/consultar/nome " method="POST" >
@@ -25,7 +24,7 @@
 				<label><b>Pesquisar Por: </b></label>
 			</div>
 			
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-9">
 				<input type="text" class="form-control" id="inputNome" name="nomeAtendente" placeholder="informe o nome do atendente...">
 			</div>
 				
@@ -110,8 +109,7 @@
 			 	</a>
 			</li>	
 		</ul>
-
-
+	</div>
 	<!-- 	<br> <br>	 -->
     	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
 	</body>
