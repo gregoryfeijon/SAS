@@ -2,9 +2,9 @@
 <html lang="pt-br" xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	  
-<!-- 	<head lang="pt-br" th:include="/fragments/head :: head"> -->
 	<head lang="pt-br" >
-		<div th:include="/fragments/head :: head"> </div>
+		<head th:include="/fragments/head :: head"></head>
+		<script th:src="@{/js/viaCep.js}" type="text/javascript"></script> 
 		<title>Cadastro de atendente</title>
 	</head>
 	
