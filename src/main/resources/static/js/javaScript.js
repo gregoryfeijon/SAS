@@ -1,11 +1,17 @@
-$(document).ready(function() {
-	var $campo = $("#inputCEP");
-	$campo.mask('00000-000', { reverse : true });
-});
-
-$(document).ready(function() {
-	var $campo = $("#inputCPF");
-	$campo.mask('000.000.000-00', { reverse : true });
+window.addEventListener("load", function () {
+	
+	const $cep = document.querySelector('[name="endereco.cep"]');
+	const $cpf = document.querySelector('[name="cpf"]');
+	
+	$cep.addEventListener("blur", infosDoEvento => {
+		const $cepTarget = infosDoEvento.target.value;
+		$cepTarget.mask('00000-000', { reverse : true });
+	})
+	
+	$cpf.addEventListener("blur", infosDoEvento => {
+		const $cpfTarget = infosDoEvento.target.value;
+		$cpfTarget.mask('000.000.000-00', { reverse : true });
+	})
 });
 
 function apenasNumerosOuX(e) {

@@ -2,19 +2,12 @@
 <html lang="pt-br" xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/styleLogin.css">
-		
+		<head th:include="/fragments/head :: head"></head>
+		<link rel="stylesheet" type="text/css" th:ref="@{/css/styleLogin.css}" href="css/styleLogin.css">
 		<title>Login</title>
 	</head>
   
-	<body>
+	<body class = "gradient">
 		<div class = "container">
 			<div class="box-parent-login" id ="borda">
 				<div class="well bg-white box-login" style = "border-radius:20px;">
@@ -36,7 +29,7 @@
 			 
 							<input type="submit" value="Entrar" class="btn btn-primary btn-lg btn-block" >
 							<p class="txt-center ls-login-signup">Deseja criar um consultório?
-								<a href="cadastro medico.html">Cadastre-se agora</a>
+								<a th:href="@{/medico/cadastrarMedico}">Cadastre-se agora</a>
 							</p>
 						</fieldset>
 					</form>
