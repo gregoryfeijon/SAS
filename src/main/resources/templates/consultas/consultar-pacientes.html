@@ -5,92 +5,106 @@
 	<head lang="pt-br" th:include="/fragments/head :: head">
 		<title>Consultar Pacientes</title>
 	</head>
+	
 	<body class="gradient">
-		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
+	
+	<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 	
 	<div class = "container" style = "width: 100vw;height: 100vh;">
-			<h3 id = "textoAlinha"><strong>Consultar os pacientes - SAS</strong></h3>
-			</br> </br>
+		<h3 id = "textoAlinha"><strong>Consultar os pacientes - SAS</strong></h3>
+		</br> </br>
 		
-		<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
-		
+	<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
+	
+<!-- 		CONSULTAR PELO NOME	 -->
+	<form action="/paciente/consultar/nome " method="POST" >
 		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
-			<div class="input-group-prepend">
-				<label><b>Pesquisar Por: </b></label>
-			</div>
 			
-					<!-- 	Combobox pesquisarPor-->
-			<select class="custom-select col-sm-2 col-md-2 col-lg-2" id="cmbPesquisarPor" name="pesquisarPor">
-				<option selected></option>
-				<option value="porNomePaciente" id = "porNomeDoPaciente">Nome do paciente</option>
-				<option value="porCPF" id = "porCpf">CPF</option>
-				<option value="porRG" id = "porRg">RG</option>
-			</select>
-		
-				<div class="form-group col-md-7">
-						<input type="text" class="form-control" id="txtNomePaciente" name="busca" placeholder="">
-				</div>
-		
-			<div class="input-group-btn " id="divBtnPesquisar">
-				<button class="btn btn-secondary " type="submit" id="bPesquisar">Pesquisar</button>
+			<div class="input-group-prepend">
+				<label><b>Pesquisar Pelo nome do paciente: </b></label>
 			</div>
-
+				
+			<div class="form-group col-md-8">
+				<input type="text" class="form-control" id="inputNome" name="nomePaciente" placeholder="informe o nome do paciente...">
+			</div>
+					
+			<div class="input-group-btn " id="divBtnPesquisar">
+				<button type="submit" class="btn btn-secondary "> Pesquisar	</button>
+			</div> 
+			
 		</div>
+	</form>
 		
-		<!-- ======================= -->
-		<table class="table  table-hover table-responsive container ">
-			<thead>
-				<tr>
-					<th scope="col"> <b> ID </b> </th>	
-					<th scope="col"> <b> Data Nasc. </b> </th>
-					<th scope="col"> <b> RG </b> </th>	
-					<th scope="col"> <b> CPF </b> </th>		
-					<th scope="col"> <b> Nome </b> </th>	
-					<th scope="col"> <b> Telefone </b> </th>	
-					<th scope="col"> <b> Celular </b> </th>	
-					<th scope="col"> <b> Editar </b> </th>	
-					<th scope="col"> <b> Deletar </b> </th>	
-					<th scope="col"> <b> Mais Um </b> </th>	
-				</tr>
-			</thead>
+	<!-- ======================= -->
+	<table class="table  table-hover table-responsive container ">
+		<thead>
+			<tr>
+				<th scope="col"> <b> ID </b> </th>	
+				<th scope="col"> <b> Data Nasc. </b> </th>
+				<th scope="col"> <b> RG </b> </th>	
+				<th scope="col"> <b> CPF </b> </th>		
+				<th scope="col"> <b> Nome </b> </th>	
+				<th scope="col"> <b> Telefone </b> </th>	
+				<th scope="col"> <b> Celular </b> </th>	
 					
-			<tbody>
-				<tr th:each="paciente : ${listPacientes}">
-					<th scope="row" th:text="${paciente.id}"> 2</th>
-					<td scope="row" th:text="${#dates.format(paciente.dataNascimento, 'dd-MM-yyyy')}"> 01/02/2019 </td>	
-					<td scope="row" th:text="${paciente.rg}"> 12.000.021-90 </td>	
-					<td scope="row" th:text="${paciente.cpf}"> 123.321.901-99 </td>	
-					<td scope="row" th:text="${paciente.nome}"> Steve Jobs </td>	
-					<td scope="row" th:text="${paciente.telefone}"> (00) 00000-0000 </td>	
-					<td scope="row" th:text="${paciente.celular}"> (00) 0000-0000 </td>
+				<th scope="col"> <b> CEP </b> </th>
+				<th scope="col"> <b> Cidade </b> </th>	
+				<th scope="col"> <b> UF </b> </th>	
+				<th scope="col"> <b> Rua </b> </th>	
+				<th scope="col"> <b> Bairro </b> </th>	
+				<th scope="col"> <b> Número </b> </th>	
+					
+				<th scope="col"> <b> Editar </b> </th>	
+				<th scope="col"> <b> Deletar </b> </th>	
+				<th scope="col"> <b> Mais Um </b> </th>	
+			</tr>
+		</thead>
+					
+		<tbody>
+			<tr th:each="paciente : ${listPacientes}">
+				<th scope="row" th:text="${paciente.id}"> 2</th>
+				<td scope="row" th:text="${#dates.format(paciente.dataNascimento, 'dd-MM-yyyy')}"> 01/02/2019 </td>	
+				<td scope="row" th:text="${paciente.rg}"> 12.000.021-90 </td>	
+				<td scope="row" th:text="${paciente.cpf}"> 123.321.901-99 </td>	
+				<td scope="row" th:text="${paciente.nome}"> Steve Jobs </td>	
+				<td scope="row" th:text="${paciente.telefone}"> (00) 00000-0000 </td>	
+				<td scope="row" th:text="${paciente.celular}"> (00) 0000-0000 </td>
+					
+				<td scope="row" th:text="${paciente.endereco.cep}"> 13323-000 </td>
+				<td scope="row" th:text="${paciente.endereco.cidade}"> Salto </td>	
+				<td scope="row" th:text="${paciente.endereco.estado}"> SP </td>	
+				<td scope="row" th:text="${paciente.endereco.rua}"> Austria </td>	
+				<td scope="row" th:text="${paciente.endereco.bairro}"> Marilia </td>	
+				<td scope="row" th:text="${paciente.endereco.numero}"> 1080 </td>	
+					
 								
-<!-- 	 				EDITAR -->
-	 				<td	scope="row">
-						<a th:href="${(#mvc.url('PC#edit').arg(0, paciente.id)).build()}">
-							<button type="submit" class="btn btn-secondary ">
-								<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
-							</button>
-						</a>
-					</td>
+<!-- 	 		EDITAR -->
+	 			<td	scope="row">
+					<a th:href="${(#mvc.url('PC#edit').arg(0, paciente.id)).build()}">
+						<button type="submit" class="btn btn-secondary ">
+							<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
+						</button>
+					</a>
+				</td>
 
-					<!-- DELETAR/INATIVAR -->
-					<td	scope="row">		
-						<form th:method="DELETE" th:action="${(#mvc.url('PC#delete').arg(0, paciente.id)).build()}">
-							<button type="submit" class="btn btn-secondary" >
-								<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg" width="25px" height="25px"> 
-							</button>
-						</form>
-					</td>
+				<!-- DELETAR/INATIVAR -->
+				<td	scope="row">		
+					<form th:method="DELETE" th:action="${(#mvc.url('PC#delete').arg(0, paciente.id)).build()}">
+						<button type="submit" class="btn btn-secondary" >
+							<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg" width="25px" height="25px"> 
+						</button>
+					</form>
+				</td>
 					
-					<!--  CADASTRAR/ MAIS UM -->
-					<td	scope="row">	
-						<a class="btn btn-secondary" th:href="@{/paciente/cadastrarPaciente}">
-							<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
-						</a>
-					</td>
+				<!--  CADASTRAR/ MAIS UM -->
+				<td	scope="row">	
+					<a class="btn btn-secondary" th:href="@{/paciente/cadastrarPaciente}">
+						<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
+					</a>
+				</td>
 					
-				 </tr>
-			</tbody>
+			</tr>
+		</tbody>
 			
 		<ul class="nav nav-pills ">
 			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listPacientes.totalPages-1)}">

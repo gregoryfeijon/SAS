@@ -3,28 +3,31 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		  
 	<head lang="pt-br" th:include="/fragments/head :: head">
-		<title>Consultar Médicos</title>
+		<title>Consultar MÃ©dicos</title>
 	</head>
 	
-	<body class ="gradient">
+<body class ="gradient">
 		
-		<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
+	<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 		
 	<div class = "container" style = "width: 100vw;height: 100vh;">
-			<h3 id = "textoAlinha"><strong>Consultar os atendentes - SAS</strong></h3>
-			</br> </br>
+	
+	<h3 id = "textoAlinha"><strong>Consultar os atendentes - SAS</strong></h3>
+	
+	</br> </br>
 		
 	<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
 			
 <!-- 	<form th:action="@{'/atendente/consultar/' + ${listAtendentes.nome}}" th:object="${atendente}" method="GET"  > -->
+<!-- 		CONSULTAR PELO CNPJ	 -->
 	<form action="/atendente/consultar/nome " method="POST" >
 		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
 		
 			<div class="input-group-prepend">
-				<label><b>Pesquisar Por: </b></label>
+				<label><b>Pesquisar Pelo nome: </b></label>
 			</div>
 			
-			<div class="form-group col-md-9">
+			<div class="form-group col-md-8">
 				<input type="text" class="form-control" id="inputNome" name="nomeAtendente" placeholder="informe o nome do atendente...">
 			</div>
 				
@@ -35,61 +38,76 @@
 		</div>
 	</form>
 	
-		<!-- ======================= -->
+	<!-- ======================= -->
 
-		<table class="table  table-hover table-responsive container ">
-			<thead>
-				<tr>
-					<th scope="col"> <b> ID </b> </th>	
-					<th scope="col"> <b> Data Nasc. </b> </th>
-					<th scope="col"> <b> RG </b> </th>	
-					<th scope="col"> <b> CPF </b> </th>		
-					<th scope="col"> <b> Nome </b> </th>	
-					<th scope="col"> <b> Telefone </b> </th>	
-					<th scope="col"> <b> Celular </b> </th>	
-					<th scope="col"> <b> Editar </b> </th>	
-					<th scope="col"> <b> Deletar </b> </th>	
-					<th scope="col"> <b> Mais Um </b> </th>	
-				</tr>
-			</thead>
+	<table class="table  table-hover table-responsive container ">
+		<thead>
+			<tr>
+				<th scope="col"> <b> ID </b> </th>	
+				<th scope="col"> <b> Data Nasc. </b> </th>
+				<th scope="col"> <b> RG </b> </th>	
+				<th scope="col"> <b> CPF </b> </th>		
+				<th scope="col"> <b> Nome </b> </th>	
+				<th scope="col"> <b> Telefone </b> </th>	
+				<th scope="col"> <b> Celular </b> </th>	
 					
-			<tbody>
-				<tr th:each="atendente : ${listAtendentes}">
-					<th scope="row" th:text="${atendente.id}"> 2</th>
-					<td scope="row" th:text="${#dates.format(atendente.dataNascimento, 'dd-MM-yyyy')}"> 01/02/2019 </td>	
-					<td scope="row" th:text="${atendente.rg}"> 12.000.021-90 </td>	
-					<td scope="row" th:text="${atendente.cpf}"> 123.321.901-99 </td>	
-					<td scope="row" th:text="${atendente.nome}"> Steve Jobs </td>	
-					<td scope="row" th:text="${atendente.telefone}"> (00) 00000-0000 </td>	
-					<td scope="row" th:text="${atendente.celular}"> (00) 0000-0000 </td>
+				<th scope="col"> <b> CEP </b> </th>
+				<th scope="col"> <b> Cidade </b> </th>	
+				<th scope="col"> <b> UF </b> </th>	
+				<th scope="col"> <b> Rua </b> </th>	
+				<th scope="col"> <b> Bairro </b> </th>	
+				<th scope="col"> <b> Número </b> </th>	
+					
+				<th scope="col"> <b> Editar </b> </th>	
+				<th scope="col"> <b> Deletar </b> </th>	
+				<th scope="col"> <b> Mais Um </b> </th>	
+			</tr>
+		</thead>
+					
+		<tbody>
+			<tr th:each="atendente : ${listAtendentes}">
+				<th scope="row" th:text="${atendente.id}"> 2</th>
+				<td scope="row" th:text="${#dates.format(atendente.dataNascimento, 'dd-MM-yyyy')}"> 01/02/2019 </td>	
+				<td scope="row" th:text="${atendente.rg}"> 12.000.021-90 </td>	
+				<td scope="row" th:text="${atendente.cpf}"> 123.321.901-99 </td>	
+				<td scope="row" th:text="${atendente.nome}"> Steve Jobs </td>	
+				<td scope="row" th:text="${atendente.telefone}"> (00) 00000-0000 </td>	
+				<td scope="row" th:text="${atendente.celular}"> (00) 0000-0000 </td>
+					
+				<td scope="row" th:text="${atendente.endereco.cep}"> 13323-000 </td>
+				<td scope="row" th:text="${atendente.endereco.cidade}"> Salto </td>	
+				<td scope="row" th:text="${atendente.endereco.estado}"> SP </td>	
+				<td scope="row" th:text="${atendente.endereco.rua}"> Austria </td>	
+				<td scope="row" th:text="${atendente.endereco.bairro}"> Marilia </td>	
+				<td scope="row" th:text="${atendente.endereco.numero}"> 1080 </td>		
 								
-<!-- 	 				EDITAR -->
-	 				<td	scope="row">
-						<a th:href="@{'/atendente/editar/' + ${atendente.id}}">
-							<button type="submit" class="btn btn-secondary ">
-								<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
-							</button>
-						</a>
-					</td>
+<!-- 			EDITAR -->
+	 			<td	scope="row">
+					<a th:href="@{'/atendente/editar/' + ${atendente.id}}">
+						<button type="submit" class="btn btn-secondary ">
+							<img th:src="@{/img/editar.svg}" src="./img/editar.svg" width="25px" height="25px"> 
+						</button>
+					</a>
+				</td>
 
-					<!-- DELETAR/INATIVAR -->
-					<td	scope="row">		
-						<form th:method="DELETE" th:action="@{'/atendente/delete/' + ${atendente.id}}">
-							<button type="submit" class="btn btn-secondary" >
-								<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg" width="25px" height="25px"> 
-							</button>
-						</form>
-					</td>
+				<!-- DELETAR/INATIVAR -->
+				<td	scope="row">		
+					<form th:method="DELETE" th:action="@{'/atendente/delete/' + ${atendente.id}}">
+						<button type="submit" class="btn btn-secondary" >
+							<img th:src="@{/img/cancelar-2.svg}" src="./img/cancelar-2.svg" width="25px" height="25px"> 
+						</button>
+					</form>
+				</td>
 					
-					<!--  CADASTRAR/ MAIS UM -->
-					<td	scope="row">	
-						<a class="btn btn-secondary" th:href="@{/atendente/cadastrarAtendente}">
-							<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
-						</a>
-					</td>
+			<!--  CADASTRAR/ MAIS UM -->
+				<td	scope="row">	
+					<a class="btn btn-secondary" th:href="@{/atendente/cadastrarAtendente}">
+						<img th:src="@{/img/mais.svg}" src="../img/mais.svg" width="25px" height="25px"> 
+					</a>
+				</td>
 					
-				 </tr>
-			</tbody>
+			 </tr>
+		</tbody>
 			
 		<ul class="nav nav-pills ">
 			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listAtendentes.totalPages)}">
@@ -101,7 +119,6 @@
 		
 		</table>
 		
-		
 		<ul class="nav nav-pills ">
 			<li class="nav-item" th:each= "pg : ${#numbers.sequence(0,listAtendentes.totalPages)}">
 			 	<a th:href="@{/atendente/consultar/(page=${pg})}"  th:text="${pg} +1" class="nav-link"  
@@ -110,7 +127,9 @@
 			</li>	
 		</ul>
 	</div>
+	
 	<!-- 	<br> <br>	 -->
     	<div lang="pt-br" th:include="/fragments/rodape :: footer"></div>
-	</body>
+</body>
+
 </html>

@@ -10,60 +10,69 @@
 	<div lang="pt-br" th:include="/fragments/menu :: menu"></div>
 
 	<div class="container" style="width: 100vw; height: 100vh;">
-		<h3 id="textoAlinha">
-			<strong>Consultar os médicos - SAS</strong>
-		</h3>
-		</br></br>
+		<h3 id="textoAlinha"> <strong>Consultar os médicos - SAS</strong> </h3>
+	</br></br>
 
-		<div lang="pt-br"
-			th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
+	<div lang="pt-br" th:include="/fragments/mensagem-validacao :: mensagemValidacao"></div>
 
+<!-- 		CONSULTAR PELO NOME -->
 	<form action="/medico/consultar/nome " method="POST" >
 		<div class="input-group col-sm-auto col-md-auto col-lg-auto">
-			<div class="input-group-prepend">
-				<label><b>Pesquisar Por: </b></label>
-			</div>
+		
+<!-- 			<div class="input-group-prepend"> -->
+<!-- 				<label><b>Pesquisar Por: </b></label> -->
+<!-- 			</div> -->
 
 			<!-- 	Combobox pesquisarPor-->
-			<select class="custom-select col-sm-2 col-md-2 col-lg-2"
-				id="cmbPesquisarPor" name="pesquisarPor">
-				<option selected></option>
-				<option value="porMedico" id="porNomeDoMedico">Nome do médico</option>
-				<option value="porCRM" id="porCRM">CRM</option>
-				<option value="porRG" id="porRg">RG</option>
-			</select>
-
-			<div class="form-group col-md-6">
-				<input type="text" class="form-control" id="inputMedico"
-					name="nomeMedico" placeholder="">
+			
+<!-- 			<select class="custom-select col-sm-2 col-md-2 col-lg-2" id="cmbPesquisarPor" name="pesquisarPor" > -->
+<!-- 				<option selected></option> -->
+<!-- 				<option value="porMedico" id="porNomeDoMedico">Nome do médico</option> -->
+<!-- 				<option value="porCRM" id="porCRM">CRM</option> -->
+<!-- 				<option value="porRG" id="porRg">RG</option> -->
+<!-- 			</select> -->
+			
+			<div class="input-group-prepend">
+				<label><b>Pesquisar Pelo nome: </b></label>
+			</div>
+			
+			<div class="form-group col-md-8">
+				<input type="text" class="form-control" id="inputMedico" name="nomeMedico" placeholder="Informe o nome do médico">
 			</div>
 
 			<div class="input-group-btn " id="divBtnPesquisar">
 				<button class="btn btn-secondary " type="submit">Pesquisar</button>
-				<a href="../home" class="btn btn-secondary">Voltar ao menu</a>
 			</div>
 		</div>
-		</form>
+	</form>
 
-		<!-- ======================= -->
+	<!-- ======================= -->
 
-		<table class="table  table-hover table-responsive container ">
-			<thead>
-				<tr>
-					<th scope="col"><b> ID </b></th>
-					<th scope="col"><b> Data Nasc. </b></th>
-					<th scope="col"><b> RG </b></th>
-					<th scope="col"><b> CPF </b></th>
-					<th scope="col"><b> Nome </b></th>
-					<th scope="col"><b> Telefone </b></th>
-					<th scope="col"><b> Celular </b></th>
-					<th scope="col"><b> CRM </b></th>
-					<th scope="col"><b> Especialidade </b></th>
-					<th scope="col"><b> Editar </b></th>
-					<th scope="col"><b> Deletar </b></th>
-					<th scope="col"><b> Mais Um </b></th>
-				</tr>
-			</thead>
+	<table class="table  table-hover table-responsive container ">
+		<thead>
+			<tr>
+				<th scope="col"><b> ID </b></th>
+				<th scope="col"><b> Data Nasc. </b></th>
+				<th scope="col"><b> RG </b></th>
+				<th scope="col"><b> CPF </b></th>
+				<th scope="col"><b> Nome </b></th>
+				<th scope="col"><b> Telefone </b></th>
+				<th scope="col"><b> Celular </b></th>
+				<th scope="col"><b> CRM </b></th>
+				<th scope="col"><b> Especialidade </b></th>
+					
+				<th scope="col"> <b> CEP </b> </th>
+				<th scope="col"> <b> Cidade </b> </th>	
+				<th scope="col"> <b> UF </b> </th>	
+				<th scope="col"> <b> Rua </b> </th>	
+				<th scope="col"> <b> Bairro </b> </th>	
+				<th scope="col"> <b> Número </b> </th>	
+					
+				<th scope="col"><b> Editar </b></th>
+				<th scope="col"><b> Deletar </b></th>
+				<th scope="col"><b> Mais Um </b></th>
+			</tr>
+		</thead>
 
 			<tbody>
 				<tr th:each="medico : ${listMedicos}">
@@ -76,7 +85,14 @@
 					<td scope="row" th:text="${medico.celular}">(00) 0000-0000</td>
 					<td scope="row" th:text="${medico.crm}">123.242.321-88</td>
 					<td scope="row" th:text="${medico.especialidade}">Oftalmologista</td>
-
+			
+					<td scope="row" th:text="${medico.endereco.cep}"> 13323-000 </td>
+					<td scope="row" th:text="${medico.endereco.cidade}"> Salto </td>	
+					<td scope="row" th:text="${medico.endereco.estado}"> SP </td>	
+					<td scope="row" th:text="${medico.endereco.rua}"> Austria </td>	
+					<td scope="row" th:text="${medico.endereco.bairro}"> Marilia </td>	
+					<td scope="row" th:text="${medico.endereco.numero}"> 1080 </td>		
+					
 					<!-- 	 				EDITAR -->
 					<td scope="row">
 						<a th:href="${(#mvc.url('MC#edit').arg(0, medico.id)).build()}">
