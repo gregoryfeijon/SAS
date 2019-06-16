@@ -82,11 +82,22 @@ public class PacienteController {
 		return mv;
 	}
 	
+	@PostMapping("/consultar/nome")
+	public ModelAndView findByNome(@RequestParam("nomenomePaciente") String nomePaciente, Model model, @RequestParam(defaultValue = "0") int page) {
+		ModelAndView mv = new ModelAndView("consultas/consultar-pacientes");
+		mv.addObject("listPacientes", pacienteService.findByNome(PageRequest.of(page, 5), nomePaciente));
+		model.addAttribute("paginaAtual", page);
+		return mv;
+	}
 	
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable("id") long id, RedirectAttributes attributes) {
-		pacienteService.deleteById(id);
-		attributes.addFlashAttribute("mensagemSucesso", "Paciente deletado com sucesso!");
+		try {
+			pacienteService.deleteById(id);
+			attributes.addFlashAttribute("mensagemSucesso", "Paciente deletado com sucesso!");
+		} catch (Exception e) {
+			attributes.addFlashAttribute("mensagemErro", "Esse Paciente NÃO, pode ser deletado pois está atrelado a uma consulta!");
+		}
 		return new ModelAndView("redirect:/paciente/consultar");
 	}
 	

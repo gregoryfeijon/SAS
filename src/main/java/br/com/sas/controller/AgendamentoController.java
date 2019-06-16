@@ -85,11 +85,23 @@ public class AgendamentoController {
 		model.addAttribute("paginaAtual", page);
 		return mv;
 	}
+	
+	@PostMapping("/consultar/nomePaciente")
+	public ModelAndView findByNome(@RequestParam("nomePaciente") String nomePaciente, Model model, @RequestParam(defaultValue = "0") int page) {
+		ModelAndView mv = new ModelAndView("agendamentos/agenda-de-consulta");
+		mv.addObject("listAgendamentos", agendamentoService.findByNomePaciente(PageRequest.of(page, 5), nomePaciente));
+		model.addAttribute("paginaAtual", page);
+		return mv;
+	}		
 
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView delete(@PathVariable long id, RedirectAttributes attributes) {
-		agendamentoService.deleteById(id);
-		attributes.addFlashAttribute("mensagemSucesso", "Agendamento deletado com sucesso!");
+		try {
+			agendamentoService.deleteById(id);
+			attributes.addFlashAttribute("mensagemSucesso", "Agendamento deletado com sucesso!");
+		} catch (Exception e) {
+			attributes.addFlashAttribute("mensagemErro", "Houve um erro inesperado, ao tentar deletar a consulta! Contate IMEDIATAMENTE, o suporte");
+		}
 		return new ModelAndView("redirect:/agendamento/consultar");
 	}
 

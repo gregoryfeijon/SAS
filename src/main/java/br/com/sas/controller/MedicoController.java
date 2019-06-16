@@ -95,11 +95,15 @@ public class MedicoController {
 	public ModelAndView delete(@PathVariable long id, RedirectAttributes attributes) {
 		Medico[] medico = new Medico[1];
 		medicoService.findOne(id).ifPresent(m -> medico[0] = m);
-		if (medico[0] != null) {
-			medicoService.delete(medico[0]);
-			attributes.addFlashAttribute("mensagemSucesso", "Médico deletado com sucesso!");
-		} else {
-			attributes.addFlashAttribute("mensagemErro", "Médico especificado não existe!");
+		try {
+			if (medico[0] != null) {
+				medicoService.delete(medico[0]);
+				attributes.addFlashAttribute("mensagemSucesso", "Médico deletado com sucesso!");
+			} else {
+				attributes.addFlashAttribute("mensagemErro", "Médico especificado não existe!");
+			}
+		} catch (Exception e) {
+			attributes.addFlashAttribute("mensagemErro","Esse Médico NÃO, pode ser deletado pois está atrelado a uma consulta!");
 		}
 		return new ModelAndView("redirect:/medico/consultar");
 	}

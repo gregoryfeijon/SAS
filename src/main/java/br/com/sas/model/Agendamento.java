@@ -23,8 +23,12 @@ public class Agendamento {
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Por favor, informe a DATA, da do agendamneto da consulta")
+	@NotNull(message = "Por favor, informe a DATA, do agendamento da consulta")
 	private Date dataConsulta;
+	
+	@NotNull(message = "Por favor, o Horário, do agendamento da consulta, NÃO, pode ser NULO")
+	@NotEmpty(message = "Por favor, informe o Horário, do agendamento da consulta")
+	private String horarioConsulta;
 	
 	@NotNull(message = "Por favor, informe o valor da consulta")
 	private Double valorConsulta;
@@ -77,6 +81,14 @@ public class Agendamento {
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
+	}
+
+	public String getHorarioConsulta() {
+		return horarioConsulta;
+	}
+
+	public void setHorarioConsulta(String horarioConsulta) {
+		this.horarioConsulta = horarioConsulta;
 	}
 
 	

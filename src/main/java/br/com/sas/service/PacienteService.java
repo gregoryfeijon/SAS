@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -27,6 +28,10 @@ public class PacienteService {
 	public Page<Paciente> findAll(PageRequest pr) {
 //		PageRequest.of(page, 5)
 		return repository.findAll(pr);
+	}
+	
+	public Page<Paciente> findByNome(Pageable pageable, String nome) {
+		return repository.findPacienteByNome(pageable,nome);
 	}
 	
 	public Optional<Paciente> findOne(Long id) {
